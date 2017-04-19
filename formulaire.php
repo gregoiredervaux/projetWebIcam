@@ -16,7 +16,8 @@ elseif  (!isset($_SESSION['statut']))
 		<?php include("inclusion/head.php"); ?>
 		<?php include("inclusion/entete.php"); ?>
 	</head>
-	<nav> <!-- input formulaire invite -->
+	<nav>
+	<form method="post" action="gestion_db/enregistrement_db.php">
 		<div class="input-group" id="nom">
   		<span class="input-group-addon" id="sizing-addon2">Nom</span>
 		<input type="text" class="form-control" aria-describedby="sizing-addon2">
@@ -45,6 +46,6 @@ elseif  (!isset($_SESSION['statut']))
 	  		<input type="text" class="form-control" placeholder="Telephone" aria-describedby="sizing-addon2">
 		</div>
 		<br>
-
+	</form>
 	</nav>
 </html> 	
