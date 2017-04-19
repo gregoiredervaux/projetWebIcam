@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,6 +19,7 @@
 		</section>
 
 		<nav>
+
 		<form method="post" action="./formulaire.php">
 			<div class="btn-group" role="group">
 				<input type="hidden" name="statut" value="parent">

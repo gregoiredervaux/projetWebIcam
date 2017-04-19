@@ -19,12 +19,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button> -->
-          <a class="navbar-brand" href="localhost/projetweb/">Gala Icam</a>
+          <a class="navbar-brand" href="./index.php">Gala Icam</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Accueil</a></li> <!-- penser a remplacer li par <li class=active> pour onglet en cours -->
-            <li><a href="localhost/projetweb/formulaire/">Formulaire</a></li>
+            <li><a href="./index.php">Accueil</a></li> <!-- penser a remplacer li par <li class=active> pour onglet en cours -->
+            <li><a href="./formulaire.php">Formulaire</a></li>
           </ul>
         </div>
       </div>
