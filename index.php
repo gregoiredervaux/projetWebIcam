@@ -14,19 +14,17 @@ session_start();
 			<?php include("inclusion/entete.php"); ?>
 		</header>
 
-		<section>
-			
+		<section>	
 		</section>
 
 		<nav>
-
 		<form method="post" action="./formulaire.php">
 			<div class="btn-group" role="group">
 				<input type="hidden" name="statut" value="parent">
 				<input type="submit" class="btn btn-default" value="Je suis un parent d'élève">
 			</div>
 		</form>
-
+		<br>
 		<form method="post" action="./formulaire.php">
 			<div class="btn-group" role="group">
 				<input type="hidden" name="statut" value="ingenieur">
