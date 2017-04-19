@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,14 +14,20 @@ session_start();
 		</section>
 
 		<nav>
-		  <div class="btn-group" role="group" id="parent">
-		    <a href="formulaire.php"><button type="button" class="btn btn-default">Parent</button></a>
-		    <?php $_SESSION['statut']="parent";?>
-		  </div>
-		  <div class="btn-group" role="group" id="ingenieur">
-		    <a href="formulaire.php"><button type="button" class="btn btn-default">Ingenieur</button></a>
-		    <?php $_SESSION['statut']="ingenieur";?>
-		  </div>
+		<form method="post" action="./formulaire.php">
+			<div class="btn-group" role="group">
+				<input type="hidden" name="statut" value="parent">
+				<input type="submit" class="btn btn-default" value="Je suis un parent d'élève">
+			</div>
+		</form>
+
+		<form method="post" action="./formulaire.php">
+			<div class="btn-group" role="group">
+				<input type="hidden" name="statut" value="ingenieur">
+				<input type="submit" class="btn btn-default" value="Je suis un ingénieur Icam">
+			</div>
+		</form>
+
 		</nav>
 
 		<footer>
