@@ -19,7 +19,6 @@ session_start();
 		</section>
 
 		<nav>
-
 		<form method="post" action="./formulaire.php">
 			<div class="btn-group" role="group">
 				<input type="hidden" name="statut" value="parent">

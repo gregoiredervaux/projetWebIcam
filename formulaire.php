@@ -1,5 +1,8 @@
 <?php
-$_SESSION['statut']=$_POST['statut'];
+if (isset($_POST['statut']) && !isset($_SESSION['statut']))
+{
+	$_SESSION['statut']=$_POST['statut'];
+}
 ?>
 
 <!DOCTYPE html>
