@@ -1,6 +1,12 @@
 <?php
 session_start();
-$_SESSION['donnée_formulaires']
+require "../class/Donnee.php";
+$dico_donnee = array();
+foreach ($_POST as $key => $value)
+{
+	'$'.$key = new Donnee($value);
+	$dico_donnee[] = '$'.$key;
+}
 //require "../class/Place.php";
 
 //initialisation de la connection dans l'objet PDO
@@ -17,3 +23,6 @@ catch(Exeption $e)
 }
 //test des données du formulaire
 
+
+
+?>
