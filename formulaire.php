@@ -12,10 +12,6 @@ if (isset($_POST['statut']) && !isset($_SESSION['statut']))
 		<?php include("inclusion/entete.php"); ?>
 	</head>
 	<nav> <!-- input formulaire invite -->
-		<br>
-		<br>
-		<br>
-		
 		<div class="input-group" id="nom">
   		<span class="input-group-addon" id="sizing-addon2">Nom</span>
 		<input type="text" class="form-control" aria-describedby="sizing-addon2">
