@@ -1,7 +1,12 @@
 <?php
-if (isset($_POST['statut']) && !isset($_SESSION['statut']))
+session_start();
+if (isset($_POST['statut']))
 {
 	$_SESSION['statut']=$_POST['statut'];
+}
+elseif  (!isset($_SESSION['statut']))
+{
+	header('./index.php');
 }
 ?>
 

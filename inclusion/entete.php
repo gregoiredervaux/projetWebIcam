@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -11,8 +7,12 @@ session_start();
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="./index.php">Accueil</a></li> <!-- penser a remplacer li par <li class=active> pour onglet en cours -->
-            <li><a href="./formulaire.php">Formulaire</a></li>
+            <li><a href="./index.php">Accueil</a></li> 
+            <?php if (isset($_SESSION['statut'])){
+            ?>
+              <li><a href="./formulaire.php">Formulaire</a></li>
+            <?php }?>
+            
           </ul>
         </div>
       </div>
