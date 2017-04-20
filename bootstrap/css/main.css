@@ -4,7 +4,7 @@ body{
 /*.div,.input-group{
 	width: 50%;
 }*/
-fieldset{
+fieldset,#valider{
 	padding-left: 5%;
 	padding-right: 50%;
 	width: 80%;

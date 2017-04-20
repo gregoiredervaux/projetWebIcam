@@ -1,4 +1,4 @@
 # projetWebIcam
 Siteparents
-# LOL
- -mise ne place de Br pour décaler les deux boutons de départ  vis à vis de l'entete
+# a remodifier:
+lien entre formulaire et enregistrement bd pour le bouton submit

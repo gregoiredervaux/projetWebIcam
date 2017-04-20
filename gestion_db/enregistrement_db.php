@@ -1,13 +1,28 @@
 <?php
 session_start();
 require "../class/Donnee.php";
+echo("post");
+var_dump($_POST);
+echo("session");
+var_dump($_SESSION);
 $dico_donnee = array();
 foreach ($_POST as $key => $value)
 {
-	'$'.$key = new Donnee($value);
-	$dico_donnee[] = '$'.$key;
+	//extraction des données du post
+	$dico_donnee_test[$key]= new Donnee($value,$key);
+	//test des données du formulaire
+	if ($dico_donnee_test[$key]->get_type()==tel 
+		&& $dico_donnee_test[$key]->i)
+	{
+
+	}
+
 }
-//require "../class/Place.php";
+
+
+echo("dictionnaire");
+var_dump($dico_donnee_test);
+
 
 //initialisation de la connection dans l'objet PDO
 
@@ -21,8 +36,5 @@ catch(Exeption $e)
 {
 	die('erreur:'.$e->getMessage());
 }
-//test des données du formulaire
-
-
 
 ?>
