@@ -45,7 +45,7 @@ class Donnee
 
 		foreach (self::choix_type as $t)
 		{
-			if(preg_match("#^".$t."#",$nom))
+			if(preg_match("#^".$t."#",$nom)) // verifie si le nom de variable correspond a un type connu
 			{$this->set_type($t);}
 		}
 		if ($this->get_type()==null)
@@ -59,7 +59,7 @@ class Donnee
 		return is_string($this->get_value());
 	}
 
-	function lenthlessThan($long)
+	function lengthLessThan($long)
 	{
 		if (is_string($this->get_value()))
 		{
@@ -71,7 +71,7 @@ class Donnee
 		}
 		else
 		{
-			throw new Exception('ce n\'est ni un entier ni uen chaine de caractère');
+			throw new Exception('ce n\'est ni un entier ni une chaine de caractère');
 		}
 
 	}
@@ -88,7 +88,7 @@ class Donnee
 
 	function isNom()
 	{
-		return (is_string($this->get_value()) && $this->lenthlessThan(50));
+		return (is_string($this->get_value()) && $this->lengthLessThan(50));
 	}
 
 	function isPrenom()
