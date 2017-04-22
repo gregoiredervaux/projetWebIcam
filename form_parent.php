@@ -39,20 +39,31 @@ var_dump($_SESSION);
 
 			<?php if (isset($_SESSION['erreur']))
 					{
-						foreach ($_SESSION['erreur'] as $key => $value)
+						
+						if(isset($_SESSION['erreur']['email_invalide']))
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> l'adresse email de l'enfant entrée ne fait réference à aucune adresse email Icam connue</p>
+							</div>
+						<?php }
+						else
 						{
-							if ($_SESSION['erreur'][$key]->get_value()=='')
-								{?>
-									<div class="alert alert-danger" role="alert">
-										<p> <strong>Attention !</strong> un champs <?php echo($_SESSION['erreur'][$key]->get_type())?> n'est pas remplis</p>
-									</div>
-								<?php }
-							else
-								{?>
-									<div class="alert alert-danger" role="alert">
-										<p> <strong>Attention !</strong> <?php echo($_SESSION['erreur'][$key]->get_value()) ?> n'est pas un <?php echo($_SESSION['erreur'][$key]->get_type())?> valide</p>
-									</div>
-								<?php }
+
+							foreach ($_SESSION['erreur'] as $key => $value)
+							{
+								if ($_SESSION['erreur'][$key]->get_value()=='')
+									{?>
+										<div class="alert alert-danger" role="alert">
+											<p> <strong>Attention !</strong> un champs <?php echo($_SESSION['erreur'][$key]->get_type())?> n'est pas remplis</p>
+										</div>
+									<?php }
+								else
+									{?>
+										<div class="alert alert-danger" role="alert">
+											<p> <strong>Attention !</strong> <?php echo($_SESSION['erreur'][$key]->get_value()) ?> n'est pas un <?php echo($_SESSION['erreur'][$key]->get_type())?> valide</p>
+										</div>
+									<?php }
+							}
 						}
 					} ?>
 
