@@ -98,7 +98,7 @@ class Donnee
 
 	function isStatut()
 	{
-		return ($this->get_value()=='parent' || $this->get_value()=='ingenieur');
+		return ($this->get_value()=='parent' || $this->get_value()=='ingenieur' || $this->get_value()=='deja_pris');
 	}
 
 	function isNb()
