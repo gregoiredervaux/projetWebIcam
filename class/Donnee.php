@@ -4,6 +4,20 @@ class Donnee
 {
 	protected $_value;
 	protected $_type;
+	protected $_verif;
+
+	const choix_type=array('tel','email','nom','prenom','int','statut','promo','check','nb','id','psw');
+
+
+	public function get_verif()
+	{
+		return $this->_verif;
+	}
+
+	public function set_verif($val)
+	{
+		$this->_verif=$val;
+	}
 
 	public function get_value()
 	{
@@ -28,35 +42,24 @@ class Donnee
 	function __construct($value,$nom)
 	{
 		$this->set_value($value);
-		if (preg_match("#^tel#",$nom))
-			{$this->set_type("tel");}
-		elseif(preg_match("#^email#",$nom))
-			{$this->set_type("email");}
-		elseif(preg_match("#^nom#",$nom))
-			{$this->set_type("nom");}
-		elseif(preg_match("#^prenom#",$nom))
-			{$this->set_type("prenom");}
-		elseif(preg_match("#^nb#",$nom))
-			{$this->set_type("nb");}
-		elseif(preg_match("#^statut#",$nom))
-			{$this->set_type("statut");}
-		elseif(preg_match("#^promo#",$nom))
-			{$this->set_type("promo");}
-		else
-			{throw new Exception("les champs \"names\" des formulaires doivent commencer par \"tel\",\"email\", \"nom\", \"prenom\", \"nb\", \"statut\" ou \"promo\"");}
+
+		foreach (self::choix_type as $t)
+		{
+			if(preg_match("#^".$t."#",$nom))
+			{$this->set_type($t);}
+		}
+		if ($this->get_type()==null)
+		{
+			throw new Exception("le champs \"".$nom."\" du formulaires doit commencer par \"tel\",\"email\", \"nom\", \"prenom\", \"nb\", \"statut\" ou \"promo\"");
+		}
 	}
 
-	function __is_int()
-	{
-		return is_int($this->get_value());
-	}
-
-		function __is_string()
+	function __is_string()
 	{
 		return is_string($this->get_value());
 	}
 
-	function lenthlessThan(int $long)
+	function lenthlessThan($long)
 	{
 		if (is_string($this->get_value()))
 		{
@@ -73,15 +76,80 @@ class Donnee
 
 	}
 
-	function istelnumber()
+	function isTel()
 	{
-		return preg_match("#^0[1-68]([-. ]?[0-9]{2}){4}$#",$this->get_value());
+		return preg_match("#^0[1-6789]([-. ]?[0-9]{2}){4}$#",$this->get_value())==1;
 	}
 
-	function isemail()
+	function isEmail()
 	{
-		return preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$this->get_value());
+		return preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$this->get_value())==1;
 	}
+
+	function isNom()
+	{
+		return (is_string($this->get_value()) && $this->lenthlessThan(50));
+	}
+
+	function isPrenom()
+	{
+		return $this->isNom($this->get_value());
+	}
+
+	function isStatut()
+	{
+		return ($this->get_value()=='parent' || $this->get_value()=='ingenieur');
+	}
+
+	function isNb()
+	{
+		try
+		{
+			return is_numeric($this->get_value());
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+	}
+
+	function  isPromo()
+	{
+		try
+		{
+			return ($this->get_value()=='i5_plus' || is_numeric($this->get_value()));
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+	}
+
+	function isCheck()
+	{
+		return ($this->get_value()=='on');
+	}
+
+	function isId()
+	{
+		return is_numeric($this->get_value());
+	}
+
+	function isPsw()
+	{
+		$l=strlen($this->get_value());
+		return preg_match("#[a-zA-Z0-9]{".$l."}#",$this->get_value())==1;
+	}
+
+	function verif_value()
+	{
+		$test='is'.ucfirst($this->get_type());
+		$this->set_verif($this->$test());
+	}
+	function __toString()
+		{
+			return $this->get_type().$this->get_value();
+		}
 }
 
 ?>
