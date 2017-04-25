@@ -8,7 +8,7 @@ $_SESSION['erreur']=null;
 //on evite toute faille XSS
 foreach ($_POST as $key => $value)
 {
-	$_POST[$key]=htmlentities($value);
+	$_POST[$key]=Securise::html($value);
 }
 
 foreach ($_POST as $key => $value)
@@ -51,6 +51,6 @@ if (!empty($dico_erreur))
 	header('Location: ../form_'.($_SESSION['statut']->get_value()));
 	exit();
 }
-echo("session:");
-var_dump($_SESSION);
+// echo("session:");
+// var_dump($_SESSION);
 ?>

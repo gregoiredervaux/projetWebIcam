@@ -35,7 +35,7 @@ if (isset($_SESSION))
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
-		<form method="post" action="gestion_db/envoie_deja_pris.php">
+		<form method="post" action="gestion_db/verif_enreg_deja_pris.php">
 		
 		<?php if (isset($_SESSION['erreur']['id_place']))
 					{ 
@@ -87,7 +87,7 @@ if (isset($_SESSION))
 		</fieldset>
 		
 		<div class="btn-group" role="group" id="valider">
-			<a href="gestion_db/envoie_deja_pris.php"><input type="submit" class="btn btn-default" value="valider"></a>
+			<a href="gestion_db/verif_enreg_deja_pris.php"><input type="submit" class="btn btn-default" value="valider"></a>
 		</div>
 		</form>
 	</body>

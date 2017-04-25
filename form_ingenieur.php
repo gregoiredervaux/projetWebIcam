@@ -35,7 +35,7 @@ if (isset($_SESSION))
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
-		<form method="post" action="gestion_db/envoie_ingenieur.php">
+		<form method="post" action="gestion_db/verif_enreg_ingenieur.php">
 			<fieldset>
 			<legend>Votre Place</legend>
 
@@ -329,7 +329,7 @@ if (isset($_SESSION))
 		    <br>
 			</fieldset>
 			<div class="btn-group" role="group" id="valider">
-				<a href="gestion_db/envoie_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
+				<a href="gestion_db/verif_enreg_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
 			</div>
 		</form>
 	</body>

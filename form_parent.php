@@ -33,22 +33,33 @@ var_dump($_SESSION);
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
-		<form method="post" action="gestion_db/envoie_parent.php">
+		<form method="post" action="gestion_db/verif_enreg_parent.php">
 		<fieldset>
 		<legend>Votre Place</legend>
 
 			<?php if (isset($_SESSION['erreur']))
 					{
 						
-						if(isset($_SESSION['erreur']['email_invalide']))
+						if(isset($_SESSION['erreur']['bool_email_invalide']))
 						{?>
 							<div class="alert alert-danger" role="alert">
 								<p> <strong>Attention !</strong> l'adresse email de l'enfant entrée ne fait réference à aucune adresse email Icam connue</p>
 							</div>
 						<?php }
+						elseif(isset($_SESSION['erreur']['bool_nb_place_depasse']))
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> Votre enfant à déjà invité deux personnes ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> guillaume.dubois-malaphosse@2019.icam.fr</p>
+							</div>
+						<?php }
+						elseif(isset($_SESSION['erreur']['bool_doublons']))
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> guillaume.dubois-malaphosse@2019.icam.fr</p>
+							</div>
+						<?php }
 						else
 						{
-
 							foreach ($_SESSION['erreur'] as $key => $value)
 							{
 								if ($_SESSION['erreur'][$key]->get_value()=='')
@@ -226,7 +237,7 @@ var_dump($_SESSION);
 		    <br>
 		</fieldset>
 		<div class="btn-group" role="group" id="valider">
-			<a href="gestion_db/envoie_parent.php"><input type="submit" class="btn btn-default" value="valider"></a>
+			<a href="gestion_db/verif_enreg_parent.php"><input type="submit" class="btn btn-default" value="valider"></a>
 		</div>
 		</form>
 	</body>

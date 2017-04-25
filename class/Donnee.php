@@ -6,7 +6,7 @@ class Donnee
 	protected $_type;
 	protected $_verif;
 
-	const choix_type=array('tel','email','nom','prenom','int','statut','promo','check','nb','id','psw');
+	const choix_type=array('tel','email','nom','prenom','int','statut','promo','check','nb','id','psw','bool');
 
 
 	public function get_verif()
@@ -117,7 +117,7 @@ class Donnee
 	{
 		try
 		{
-			return ($this->get_value()=='i5_plus' || is_numeric($this->get_value()));
+			return ($this->get_value()=='i5_plus' || $this->get_value()=='parent' || is_numeric($this->get_value()));
 		}
 		catch(Exception $e)
 		{
@@ -139,6 +139,11 @@ class Donnee
 	{
 		$l=strlen($this->get_value());
 		return preg_match("#[a-zA-Z0-9]{".$l."}#",$this->get_value())==1;
+	}
+
+	function isBool()
+	{
+		return is_bool($this->get_value());
 	}
 
 	function verif_value()
