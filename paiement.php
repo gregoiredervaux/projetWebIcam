@@ -1,7 +1,7 @@
 <?php
-require "../class/Donnee.php";
-require "../class/Securise.php";
-include ('../config.php');
+require "/class/Donnee.php";
+require "/class/Securise.php";
+include ('/config.php');
 session_start();
 
 $prix=intval($_SESSION['prix']);

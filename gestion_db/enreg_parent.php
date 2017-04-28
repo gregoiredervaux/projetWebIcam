@@ -48,69 +48,64 @@ if ($_SESSION['check_conference']->get_value()=='on')
 $ajout_parent->bindParam('conf', $conf_value, PDO::PARAM_INT);
 
 $ajout_parent->execute();
+// on recupère l'id de la dernière requete executee via PDO
+$id_parent=$bd->lastInsertId();
+echo("id_parent par le last id etc...");
+var_dump($id_parent);
 
 //on fait met a jour la relation icam/parent
 
 $recup_lien=$bd->prepare('SELECT id,id_parent1 FROM '.$settings['confSQL']['bd_icam_has_gest'].' AS bd_lien
 	INNER JOIN '.$settings['confSQL']['bd_etudiant_icam'].' AS bd_icam ON bd_icam.id=bd_lien.id_icam
-	WHERE email= :email')
+	WHERE email= :email');
 
 $recup_lien->bindParam('email', $email_enf, PDO::PARAM_STR);
 $recup_lien->execute();
 
 $recup_lien_value=$recup_lien->fetch();
+
+echo("recup_lien_value");
+var_dump($recup_lien_value);
+
 if (!isset($recup_lien_value['id']))
 {
 	
-	$recup_id=$bd->prepare('SELECT id FROM '.$settings['confSQL']['d_etudiant_icam'].' WHERE email= :email')
-	$recup_lien->bindParam('email', $email_enf, PDO::PARAM_STR);
+	$recup_id=$bd->prepare('SELECT id FROM '.$settings['confSQL']['bd_etudiant_icam'].' WHERE email= :email');
+	$recup_id->bindParam('email', $email_enf, PDO::PARAM_STR);
 	$recup_id->execute();
 
 	$id=$recup_id->fetch();
 
-	$recup_id_parent=$bd->prepapre('SELECT id FROM '.$settings['confSQL']['bd_invite'].' AS bd_inv
-	WHERE bd_inv.email = :email AND bd_inv.nom = :nom AND bd_inv.prenom= :prenom ');
-	$recup_id_parent->bindParam('email', $email, PDO::PARAM_STR);
-	$recup_id_parent->bindParam('nom', $nom, PDO::PARAM_STR);
-	$recup_id_parent->bindParam('email', $prenom, PDO::PARAM_STR);
-	$recup_id_parent->execute();
+	echo("info id");
+	var_dump($id);
 
-	$recup_id_parent->fetch();
-
+	echo("info id_parent");
+	var_dump($id_parent);
+	//on a toutes les infos pour mettre a jour le lien
 
 	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_icam_has_gest'].'(id_icam,id_parent1)
-		VALUES(:id,:id_parent1)');
+		VALUES( :id , :id_parent1 )');
 
 	$set_lien->bindParam('id', $id['id'], PDO::PARAM_INT);
-	$set_lien->bindParam('id_parent1', $recup_id_parent['id'], PDO::PARAM_INT);
+	$set_lien->bindParam('id_parent1', $id_parent, PDO::PARAM_INT);
 
-	$set_lien->execute()
+	$set_lien->execute();
 }
-// else
-// {
-// 	$recup_id=$bd->prepare('SELECT id FROM '.$settings['confSQL']['d_etudiant_icam'].' WHERE email= :email')
-// 	$recup_lien->bindParam('email', $email_enf, PDO::PARAM_STR);
-// 	$recup_id->execute();
+else
+{
+	$id=$recup_lien_value['id'];
+	echo("info id");
+	var_dump($id);
 
-// 	$id=$recup_id->fetch();
+	echo("info id_parent");
+	var_dump($id_parent);
+	//on a toutes les infos pour mettre a jour le lien
 
-// 	$recup_id_parent=$bd->prepapre('SELECT id FROM '.$settings['confSQL']['bd_invite'].' AS bd_inv
-// 	WHERE bd_inv.email = :email AND bd_inv.nom = :nom AND bd_inv.prenom= :prenom ');
-// 	$recup_id_parent->bindParam('email', $email, PDO::PARAM_STR);
-// 	$recup_id_parent->bindParam('nom', $nom, PDO::PARAM_STR);
-// 	$recup_id_parent->bindParam('email', $prenom, PDO::PARAM_STR);
-// 	$recup_id_parent->execute();
+	$set_lien=$bd->prepare('UPDATE '.$settings['confSQL']['bd_icam_has_gest'].' SET id_parent2= :id_parent2');
+	$set_lien->bindParam('id_parent2', $id_parent, PDO::PARAM_INT);
 
-// 	$recup_id_parent->fetch();
-
-
-// 	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_icam_has_gest'].'(id_icam,id_parent1)
-// 		VALUES(:id,:id_parent1)');
-
-// 	$set_lien->bindParam('id', $id['id'], PDO::PARAM_INT);
-// 	$set_lien->bindParam('id_parent1', $recup_id_parent['id'], PDO::PARAM_INT);
-
-// 	$set_lien->execute()
-// }
-
+	$set_lien->execute();
+}
+$_SESSION['enregistrement']="fait";
+header("Location: recap_post_paiement_parent");
 ?>

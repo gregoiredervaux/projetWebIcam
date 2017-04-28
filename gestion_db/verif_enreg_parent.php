@@ -133,5 +133,6 @@ if(isset($_SESSION['nb_ticket']))
 {
 	$_SESSION['prix']=$_SESSION['prix']+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket']->get_value());
 }
- header("Location: ../paiement.php");
+$_SESSION['verif']=true;
+ header("Location: ../recap_avant_paiement_parent.php");
 ?>
