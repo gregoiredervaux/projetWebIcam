@@ -22,7 +22,10 @@ $settings=array(
             'diner' => 20,
             'conf' => 3,
             'buffet' => 10,
-            'ticket_boisson' => 1)
+            'ticket_boisson' => 1),
+        'security' => array(
+            'prefix_salt' => 'galaicam',
+            'suffix_salt' => 'promotion119')
         )
 ?>
 

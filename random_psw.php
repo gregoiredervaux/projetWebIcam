@@ -1,8 +1,8 @@
-generation aléatoire de psw
+<?php
 
-
-function chaine_aleatoire($nb_car, $chaine = 'azertyuiopqsdfghjklmwxcvbn123456789')
+function chaine_aleatoire($nb_car)
 {
+	$chaine = 'azertyuiopqsdfghjklmwxcvbn123456789';
     $nb_lettres = strlen($chaine) - 1;
     $generation = '';
     for($i=0; $i < $nb_car; $i++)
@@ -13,3 +13,4 @@ function chaine_aleatoire($nb_car, $chaine = 'azertyuiopqsdfghjklmwxcvbn12345678
     }
     return $generation;
 }
+?>
