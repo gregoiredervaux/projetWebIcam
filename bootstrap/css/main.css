@@ -1,11 +1,8 @@
 body{
 	padding-top: 80px;
 }
-/*.div,.input-group{
-	width: 50%;
-}*/
 fieldset,#valider{
 	padding-left: 5%;
 	padding-right: 40%;
 	width: 80%;
-}	
+}

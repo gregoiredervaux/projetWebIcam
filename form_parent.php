@@ -49,13 +49,13 @@ var_dump($_SESSION);
 						elseif(isset($_SESSION['erreur']['bool_nb_place_depasse']))
 						{?>
 							<div class="alert alert-danger" role="alert">
-								<p> <strong>Attention !</strong> Votre enfant à déjà invité deux personnes ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> guillaume.dubois-malaphosse@2019.icam.fr</p>
+								<p> <strong>Attention !</strong> Votre enfant à déjà invité deux personnes ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> cetteputedederveaux@monnomsecritmemepascommeca.sucemaqueue</p>
 							</div>
 						<?php }
 						elseif(isset($_SESSION['erreur']['bool_doublons']))
 						{?>
 							<div class="alert alert-danger" role="alert">
-								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> guillaume.dubois-malaphosse@2019.icam.fr</p>
+								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> cetteputedederveaux@monnomsecritmemepascommeca.sucemaqueue</p> 
 							</div>
 						<?php }
 						else
@@ -77,7 +77,6 @@ var_dump($_SESSION);
 							}
 						}
 					} ?>
-
 			<div class="input-group" id="nom">
 	  		<span class="input-group-addon" id="sizing-addon2">Nom</span>
 			<input type="text" class="form-control" aria-describedby="sizing-addon2" name="nom"
@@ -107,7 +106,7 @@ var_dump($_SESSION);
 			<br>
 				<div class="input-group" id="mail">
 		  			<span class="input-group-addon" id="sizing-addon2">email de l'enfant</span>
-		  			<input type="text" class="form-control" placeholder="Adresse email de l'enfant référent" aria-describedby="sizing-addon2" name="email_enf"
+		  			<input type="text" class="form-control" placeholder="Adresse email Icam de l'enfant référent" aria-describedby="sizing-addon2" name="email_enf"
 		  			<?php if (isset($_SESSION['email_enf']))
 				{?> 
 					value=<?php echo($_SESSION['email_enf']->get_value());
@@ -152,14 +151,6 @@ var_dump($_SESSION);
       												<?php }
       										}?> >0</option>
 
-		           <option value=5 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='5')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >5</option>
-
 		           <option value=10 <?php if (isset($_SESSION['nb_ticket']))
       										{
       											if ($_SESSION['nb_ticket']->get_value()=='10')
@@ -167,14 +158,6 @@ var_dump($_SESSION);
       													selected
       												<?php }
       										}?> >10</option>
-
-		           <option value=15 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='15')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >15</option>
 
 		           <option value=20 <?php if (isset($_SESSION['nb_ticket']))
       										{
@@ -184,14 +167,6 @@ var_dump($_SESSION);
       												<?php }
       										}?> >20</option>
 
-		           <option value=25 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='25')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >25</option>
-
 		           <option value=30 <?php if (isset($_SESSION['nb_ticket']))
       										{
       											if ($_SESSION['nb_ticket']->get_value()=='30')
@@ -200,14 +175,6 @@ var_dump($_SESSION);
       												<?php }
       										}?> >30</option>
 
-		           <option value=35 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='35')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >35</option>
-
 		           <option value=40 <?php if (isset($_SESSION['nb_ticket']))
       										{
       											if ($_SESSION['nb_ticket']->get_value()=='40')
@@ -215,14 +182,6 @@ var_dump($_SESSION);
       													selected
       												<?php }
       										}?> >40</option>
-
-		           <option value=45 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='45')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >45</option>
 
 		           <option value=50 <?php if (isset($_SESSION['nb_ticket']))
       										{
@@ -238,7 +197,6 @@ var_dump($_SESSION);
 		</fieldset>
 		<div class="btn-group" role="group" id="valider">
 			<a href="gestion_db/verif_enreg_parent.php"><input type="submit" class="btn btn-default" value="valider"></a>
-		</div>
 		</form>
 	</body>
 </html>

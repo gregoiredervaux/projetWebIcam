@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <nav class="navbar navbar-fixed-top navbar-inverse">
+    <nav class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="./index.php">Gala Icam</a>
