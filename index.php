@@ -69,7 +69,7 @@ if (isset($_SESSION['statut']))
 			</div>
 		<!-- FIN CAROUSEL -->
 			<br>
-			<div class="row"> <!-- Boutons selections -->
+			<div class="row">
 				<nav>
 					<div class="col-md-offset-2 col-md-3">
 						<form method="post" action="./form_parent.php">
@@ -98,32 +98,8 @@ if (isset($_SESSION['statut']))
 					</div>
 				</nav>
 			</div>
-			<!-- Fin boutons -->
-			<br>
-			<section class="row" id="video_annonce">
-			 <h3>Revivez l'annonce du thème</h3>
-			 <div class="col-md-12">
-			  	<iframe width=100% height="480" src="img/a7x.mp4" frameborder="0"  autoplay="" allowfullscreen></iframe>
-			  </div>
-			</section>
-			<br>
-
-			<section class="row" id="theme">
-				<div class="col-md-8"><h3>Au Crépuscule d'un règne</h3>
-					<div class="row"><p>Ceci est un thème bla bla bla explication GREGOIRE REND L'ARGENT #balec' de ton vélo moi je voulais une switch fheniopmre hiêhguersh hqu rehvu revhreyvgw vhnrebergh e gjhr eufhgjbjtrpbjt vdgdsy vjpbkkxndfjvb k,, ^shk jvidfhds dvofdvk hfucosdvh dkhs egfsefi rlvrev rijvr  gjv djvjdhegfhr kerofjru zeyf hre PENSER A CHANGER POLICE ECRITURE ET PEUT ETRE LA COULEUR</p></div>
-				</div>
-				<div class="col-md-3"><img src="img/pyramide.jpg" alt="logo gala"></div>
-			</section>
-
-			<section class="row" id="spread">
-				<div class="col-md-3"><img src="img/bg.jpg" alt="logo spread"></div>
-				<div class="col-md-8"><h3>Conférence Spread</h3>
-					<div class="row"><p>conférence spread qui n'a pas de putin de logo trouvable ni d'image qui rentre ici donc en attendant voici une photo de notre bien aimé BG, de plus bjiverh gbceusichrg gyfuirzecg ghfovcduygv regherivgd gfoergtfvyred vbo gfyvrd vgrey vregyrfgvhufdgv ghukfygsdrvdhvhd hdildfuh dihdfh kdfhg dfhkg dfh gh ufhredf rhhr fjzesgfzseh fkesgfsekjgvhrdh seh rgvrdyf kghi erh herggi rh dgrig rd hjg irdg dh</p></div>
-				</div>
-			</section>
 		</div>
-		<br>
-		<br>
+
 		<footer>
 			<?php include("inclusion/pied_de_page.php") ?>
 		</footer>
