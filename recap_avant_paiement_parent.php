@@ -4,17 +4,14 @@ require "/class/Securise.php";
 include ('/config.php');
 session_start();
 
-echo($_SESSION['verif']);
-
 if(!isset($_SESSION['verif']))
 {
-	header("Location: mauvais_chemin.php");
+	// header("Location: mauvais_chemin.php");
 }
-elseif($_SESSION['verif']==true)
+elseif($_SESSION['verif']==false)
 {
-	header("Location: mauvais_chemin.php");
+	// header("Location: mauvais_chemin.php");
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -95,7 +92,6 @@ elseif($_SESSION['verif']==true)
 
 		<form action="paiement.php" method="post">
 			<div class="btn-group" role="group" id="valider">	
-				<label for="payer">Payer</label>
 				<a href="paiement.php"><input type="submit" class="btn btn-default" value="payer"></a>
 			</div>
 	</body>

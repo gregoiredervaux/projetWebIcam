@@ -1,7 +1,8 @@
 <?php
 require "../class/Donnee.php";
 require "../class/Securise.php";
-include ('../config.php');
+require "../config.php";
+require "../random_psw.php";
 session_start();
 
 try
@@ -22,10 +23,17 @@ $tel_parent=$_SESSION['tel']->get_value();
 $nb_ticket=$_SESSION['nb_ticket']->get_value();
 $diner_value=null;
 
+//on genere automatiquement un mot de passe
+
+$psw=chaine_aleatoire(20);
+
+$psw_salted=$settings['security']['prefix_salt'].$psw.$settings['security']['suffix_salt'];
+
+$psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT);
 
 //ici, on peut ajouter le parents sans craindre de conflits.
-$ajout_parent=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id,nom,prenom,email,telephone,ticket_boisson,promo,date_inscription,diner,conference) 
-	VALUES(DEFAULT,:nom,:prenom,:email,:tel,:nb_ticket,\'parent\',DEFAULT,:diner,:conf)');
+$ajout_parent=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id,nom,prenom,email,telephone,ticket_boisson,promo,date_inscription,diner,conference,psw) 
+	VALUES(DEFAULT,:nom,:prenom,:email,:tel,:nb_ticket,\'parent\',DEFAULT,:diner,:conf,:psw)');
 
 
 $ajout_parent->bindParam('nom', $nom, PDO::PARAM_STR);
@@ -47,11 +55,11 @@ if ($_SESSION['check_conference']->get_value()=='on')
 }
 $ajout_parent->bindParam('conf', $conf_value, PDO::PARAM_INT);
 
+$ajout_parent->bindParam('psw', $psw_hash, PDO::PARAM_STR);
+
 $ajout_parent->execute();
 // on recupère l'id de la dernière requete executee via PDO
 $id_parent=$bd->lastInsertId();
-echo("id_parent par le last id etc...");
-var_dump($id_parent);
 
 //on fait met a jour la relation icam/parent
 
@@ -64,9 +72,6 @@ $recup_lien->execute();
 
 $recup_lien_value=$recup_lien->fetch();
 
-echo("recup_lien_value");
-var_dump($recup_lien_value);
-
 if (!isset($recup_lien_value['id']))
 {
 	
@@ -76,11 +81,6 @@ if (!isset($recup_lien_value['id']))
 
 	$id=$recup_id->fetch();
 
-	echo("info id");
-	var_dump($id);
-
-	echo("info id_parent");
-	var_dump($id_parent);
 	//on a toutes les infos pour mettre a jour le lien
 
 	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_icam_has_gest'].'(id_icam,id_parent1)
@@ -94,11 +94,7 @@ if (!isset($recup_lien_value['id']))
 else
 {
 	$id=$recup_lien_value['id'];
-	echo("info id");
-	var_dump($id);
 
-	echo("info id_parent");
-	var_dump($id_parent);
 	//on a toutes les infos pour mettre a jour le lien
 
 	$set_lien=$bd->prepare('UPDATE '.$settings['confSQL']['bd_icam_has_gest'].' SET id_parent2= :id_parent2');
@@ -107,5 +103,7 @@ else
 	$set_lien->execute();
 }
 $_SESSION['enregistrement']="fait";
-header("Location: recap_post_paiement_parent");
+$_SESSION['id']=$id_parent;
+$_SESSION['psw']=$psw;
+header("Location: ../recap_post_paiement_parent");
 ?>
