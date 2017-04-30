@@ -128,7 +128,7 @@ var_dump($_SESSION);
       			<?php if (isset($_SESSION['check_diner']))
       			{?>
       				checked
-      			<?php } ?> >Participation au diner</label>
+      			<?php } ?> >Participation au diner <span class="label label-primary">+ 10€</span></label>
       		</div>
       		<br>
       		<div class="checkbox">
@@ -136,11 +136,11 @@ var_dump($_SESSION);
       			.<?php if (isset($_SESSION['check_conference']))
       			{?>
       				checked
-      			<?php } ?> >Participation à la conférence</label>
+      			<?php } ?> >Participation à la conférence <span class="label label-primary">+ 3€</span></label>
       		</div>
       		<br>
       		<div>
-      		<label for="nb_ticket">combien de tickets boissons voulez vous ?</label><br />
+      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
 
 		       <select name="nb_ticket" id="pays">
 

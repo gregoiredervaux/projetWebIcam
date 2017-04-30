@@ -1,8 +1,9 @@
 <?php
 require "../class/Donnee.php";
+require "../class/Securise.php";
+include ('../config.php');
 session_start();
-echo("post: ");
-var_dump($_POST);
+
 
 
 //initialisation de la connection dans l'objet PDO
@@ -21,3 +22,15 @@ catch(Exeption $e)
 
 //verification des données
 include "verif_donnee_formulaire.php";
+
+var_dump($_SESSION);
+die();
+
+foreach ($settings['confSQL'] as $key => $value) {
+	$settings['confSQL'][$key]=Securise::html($value);
+}
+
+$verif=$bd->prepare('SELECT count(*) FROM '.$settings['confSQL']['bd_invite'].' WHERE email= :email AND psw= :psw');
+
+$verif->bindParam('email', $email, PDO::PARAM_STR);
+$verif->execute();

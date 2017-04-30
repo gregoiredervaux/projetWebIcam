@@ -1,5 +1,5 @@
 <?php
-
+require "../class/nettoyer.php";
 $dico_donnee=array();
 // echo("session au depart des de l'enregistrement des données");
 // var_dump($_SESSION);
@@ -9,6 +9,7 @@ $_SESSION['erreur']=null;
 foreach ($_POST as $key => $value)
 {
 	$_POST[$key]=Securise::html($value);
+	$_POST[$key]=nettoyer($value);
 }
 
 foreach ($_POST as $key => $value)
