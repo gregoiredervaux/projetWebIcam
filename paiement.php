@@ -17,5 +17,5 @@ if (isset($_SESSION['ancien_prix']))
 //paiement
 
 $_SESSION['paiement']=true;
-header('Location: gestion_db/enreg_parent');
+header('Location: gestion_db/enreg_'.$_SESSION['statut']->get_value().'.php');
 ?>

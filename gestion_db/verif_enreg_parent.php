@@ -18,13 +18,11 @@ catch(Exeption $e)
 //verifie si les données rentrées correspondent aux données demandées
 include "verif_donnee_formulaire.php";
 
-echo("connexion faite");
-
 //contre faille XSS sur le dossiers settings qui va venir du serveur donc sujet a modification.
 foreach ($settings['confSQL'] as $key => $value) {
-	# code...
+	$settings['confSQL'][$key]=Securise::html($value);
 }
-$settings['confSQL'][$key]=Securise::html($value);
+
 
 
 //initialisation des variables

@@ -41,20 +41,35 @@ if (isset($_SESSION))
 
 				<?php if (isset($_SESSION['erreur']))
 					{
-						foreach ($_SESSION['erreur'] as $key => $value)
+						if(isset($_SESSION['erreur']['bool_nb_place_depasse']))
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> nombre de place maximal atteint ! vous ne pouvez plus prendre de place...</p>
+							</div>
+						<?php }
+						elseif(isset($_SESSION['erreur']['bool_doublons']))
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> cetteputedederveaux@monnomsecritmemepascommeca.sucemaqueue</p> 
+							</div>
+						<?php }
+						else
 						{
-							if ($_SESSION['erreur'][$key]->get_value()=='')
-								{?>
-									<div class="alert alert-danger" role="alert">
-										<p> <strong>Attention !</strong> un champs <?php echo($_SESSION['erreur'][$key]->get_type())?> n'est pas remplis</p>
-									</div>
-								<?php }
-							else
-								{?>
-									<div class="alert alert-danger" role="alert">
-										<p> <strong>Attention !</strong> <?php echo($_SESSION['erreur'][$key]->get_value()) ?> n'est pas un <?php echo($_SESSION['erreur'][$key]->get_type())?> valide</p>
-									</div>
-								<?php }
+							foreach ($_SESSION['erreur'] as $key => $value)
+							{
+								if ($_SESSION['erreur'][$key]->get_value()=='')
+									{?>
+										<div class="alert alert-danger" role="alert">
+											<p> <strong>Attention !</strong> un champs <?php echo($_SESSION['erreur'][$key]->get_type())?> n'est pas remplis</p>
+										</div>
+									<?php }
+								else
+									{?>
+										<div class="alert alert-danger" role="alert">
+											<p> <strong>Attention !</strong> <?php echo($_SESSION['erreur'][$key]->get_value()) ?> n'est pas un <?php echo($_SESSION['erreur'][$key]->get_type())?> valide</p>
+										</div>
+									<?php }
+							}
 						}
 					} ?>
 
@@ -103,7 +118,14 @@ if (isset($_SESSION))
 				}?> >
 				</div>
 				<br>
-
+				<div class="checkbox">
+      				<label><input type="checkbox" name="check_conference"
+      			.<?php if (isset($_SESSION['check_conference']))
+      				{?>
+      					checked
+      				<?php } ?> >Participation à la conférence</label>
+      			</div>
+      			<br>
 				<div>
       			<label for="nb_ticket">combien de tickets boissons voulez vous ?</label><br />
 		       <select name="nb_ticket" id="pays">

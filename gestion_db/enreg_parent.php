@@ -39,7 +39,6 @@ $ajout_parent=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id
 $ajout_parent->bindParam('nom', $nom, PDO::PARAM_STR);
 $ajout_parent->bindParam('prenom',$prenom , PDO::PARAM_STR);
 $ajout_parent->bindParam('email',$email_parent , PDO::PARAM_STR);
-$email_enf=$_SESSION['email_enf']->get_value();
 $ajout_parent->bindParam('tel', $tel_parent, PDO::PARAM_INT);
 $ajout_parent->bindParam('nb_ticket', $nb_ticket , PDO::PARAM_STR);
 if ($_SESSION['check_diner']->get_value()=='on')
