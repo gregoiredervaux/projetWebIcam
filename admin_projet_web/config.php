@@ -12,6 +12,7 @@ $settings=array(
             'bd_parent' => 'icam_parent',
             'bd_ingenieur' => 'icam_ingenieur',
             'bd_invite' => 'invite',
+            'bd_admin' => 'administrateurs',
             'bd_icam_has_gest' => 'icam_parent',
             'bd_inge_has_gest' => 'inge_invite'),
         'quotas' => array(

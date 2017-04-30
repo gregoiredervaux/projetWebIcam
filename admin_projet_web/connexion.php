@@ -1,3 +1,47 @@
+<?php 
+require "config.php";
+require "Auth_class.php";
+session_start();
+try
+{
+  $bd = new PDO('mysql:host='.$settings['confSQL']['sql_host'].';dbname='.$settings['confSQL']['sql_db'].';charset=utf8',$settings['confSQL']['sql_user'],$settings['confSQL']['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+}
+catch(Exeption $e)
+{
+  die('erreur:'.$e->getMessage());
+}
+
+if (!isset($_SESSION)){       //definition premiere session
+  $_SESSION=array(
+    'initialisation'=>'initialisation');
+}
+
+if (isset($_SESSION['erreur'])){
+  ?>
+  <div class="alert alert-danger" role="alert">
+    <p><strong>Attention !</strong> <?php echo $_SESSION['erreur'] ?></p>
+  </div>
+<?php } 
+
+
+if (isset($_POST['email']) && isset($_POST['password']))
+{
+  $log=login($_POST,$bd,$settings);
+
+  if ($log==False){
+    $_SESSION=array(
+      'erreur'=>'identifiants incorrects');
+    header('Location: connexion.php');
+  }
+  else{
+    $_SESSION=array(
+      'email'=>$_POST['email']);
+      header('Location: index2.php');
+  }
+}
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +75,7 @@
         <input type="password" class="form-control" placeholder="Mot de passe" name="password" required>
         <input class="btn btn-primary" type="submit" value="Se connecter">
       </form> -->
-      <form class="form-signin" role="form" action="index2.php" method="post">
+      <form class="form-signin" role="form" action="connexion.php" method="post">
           <h2 class="form-signin-heading">Identifiez-vous !</h2>
           <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
           <input type="password" name="password" class="form-control" placeholder="Password" required>
