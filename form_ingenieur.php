@@ -1,5 +1,6 @@
 <?php
 require "class/Donnee.php";
+require "config.php";
 session_start();
 
 if (isset($_POST['statut']) && $_POST['statut']=='ingenieur')
@@ -50,7 +51,7 @@ if (isset($_SESSION))
 						elseif(isset($_SESSION['erreur']['bool_doublons']))
 						{?>
 							<div class="alert alert-danger" role="alert">
-								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> cetteputedederveaux@monnomsecritmemepascommeca.sucemaqueue</p> 
+								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> <?php echo($settings['emailContactGala']); ?></p> 
 							</div>
 						<?php }
 						else
@@ -78,7 +79,7 @@ if (isset($_SESSION))
 				<input type="text" class="form-control" aria-describedby="sizing-addon2" name="promo" 
 				<?php if (isset($_SESSION['promo']))
 				{?> 
-					value=<?php echo($_SESSION['nom']->get_value());
+					value=<?php echo($_SESSION['promo']->get_value());
 				}?> >
 				</div>
 				<br>

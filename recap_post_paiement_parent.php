@@ -1,8 +1,9 @@
 <?php
 require "/class/Donnee.php";
 require "/class/Securise.php";
-include ('/config.php');
+require "/config.php";
 session_start();
+require "email_parent.php";
 
 if(!isset($_SESSION['paiement']))
 {

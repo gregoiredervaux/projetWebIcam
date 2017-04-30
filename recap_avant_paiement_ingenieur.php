@@ -94,5 +94,8 @@ elseif($_SESSION['verif']==false)
 				<a href="paiement.php"><input type="submit" class="btn btn-default" value="payer"></a>
 			</div>
 		</form>
+		<div class="btn-group" role="group" aria-label="...">
+  			<a href="form_ingenieur.php"><button type="button" class="btn btn-default">retour au formulaire</button></a>
+  		</div>
 	</body>
 </html>
