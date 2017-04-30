@@ -3,7 +3,7 @@ require "/class/Donnee.php";
 require "/class/Securise.php";
 require "/config.php";
 session_start();
-require "email_parent.php";
+// require "email_parent.php";
 
 if(!isset($_SESSION['paiement']))
 {
@@ -32,74 +32,70 @@ elseif($_SESSION['paiement']==false)
 			<p> Paiement effectué ! Votre place a bien été enregistrée</p>
 		</div>
 
-		<p> Identifiaction: (si vous voulez modifier votre place, vous aurez besoin de ces deux informations !)</p>
+		<div class="col-md-10 col-md-offset-1">
+
+		<h1><strong> Identification:</strong></h1><p>(si vous voulez modifier votre place, vous aurez besoin de ces deux informations !)</p>
 		<br>
 
-		<p>Identifiant:</p>
-		<p><?php echo($_SESSION['email']->get_value());?><p>
+		<p><strong>Identifiant:</strong>
+		<?php echo($_SESSION['email']->get_value());?><p>
+
+		<p><strong>Mot de passe:</strong>
+		<?php echo($_SESSION['psw']);?><p>
+		<br>
+		
+		<h1><strong>Récapitulatif:</strong></h1>
 		<br>
 
-		<p>Mot de passe:<p>
-		<p><?php echo($_SESSION['psw']);?><p>
-		<br>
-		
-		<p> <Strong>Récaputilatif:</Strong></p>
-		<br>
-		
-		<p> Noms:</p>
-		<p><?php echo($_SESSION['nom']->get_value());?><p>
-		<br>
-		
-		<p>Prenom:</p>
-		<p><?php echo($_SESSION['prenom']->get_value());?></p>
-		<br>
-		
-		<p>Adresse email personnelle</p>
-		<p><?php echo($_SESSION['email']->get_value());?></p>
-		<br>
-		
-		<p>Telephone:</p>
-		<p><?php echo($_SESSION['tel']->get_value());?></p>
-		<br>
-		
-		<p>Paricipation au diner:</p>
-		<p><?php if(isset($_SESSION['check_diner']))
-					{if($_SESSION['check_diner']=='on')
+			<p><strong>Nom:</strong>
+			<?php echo('    '.$_SESSION['nom']->get_value());?></p>
+			
+			<p><strong>Prenom:</strong>
+			<?php echo('    '.$_SESSION['prenom']->get_value());?></p>
+			
+			<p><strong>Adresse email personnelle:</strong>
+			<?php echo('    '.$_SESSION['email']->get_value());?></p>
+
+			<p><strong>Adresse email de l'enfant référent:</strong>
+			<?php echo('    '.$_SESSION['email_enf']->get_value());?></p>
+			
+			<p><strong>Telephone:</strong>
+			<?php echo('    '.$_SESSION['tel']->get_value());?></p>
+					
+			<p><strong>Participation à la conférence:</strong>
+			<?php if(isset($_SESSION['check_conference']))
 						{
-							echo("oui");
+							if($_SESSION['check_conference']->get_value()=='on')
+							{ ?>
+								oui</p>
+							<?php }
 						}
-					}
-					else
-						{
-							echo("non");
-						}?></p>
-		<br>
-		
-		<p>Paricipation à la conférence:</p>
-		<p><?php if(isset($_SESSION['check_conference']))
-					{if($_SESSION['check_conference']=='on')
-						{
-							echo("oui");
-						}
-					}
-					else
-						{
-							echo("non");
-						}?></p>
-		<br>
-		
-		<p>Nombre de tickets boissons:</p>
-		<p><?php echo($_SESSION['nb_ticket']->get_value());?></p>
-		<br>
-		
-		<p>Adresse email de l'enfant réferent:</p>
-		<p><?php echo($_SESSION['email_enf']->get_value());?></p>
-		<br>
-		<br>
-		
-		<p>Prix global:</p>
-		<p><?php echo($_SESSION['prix']);?></p>
+						else
+							{?>
+								non</p>
+							<?php } ?>
 
+			<p><strong>Participation au diner:</strong>
+			<?php if(isset($_SESSION['check_diner']))
+						{
+							if($_SESSION['check_diner']->get_value()=='on')
+							{ ?>
+								oui</p>
+							<?php }
+						}
+						else
+							{?>
+								non</p>
+							<?php } ?>
+
+			<p><strong>Nombre de tickets boisson:</strong>
+			<?php echo($_SESSION['nb_ticket']->get_value());?></p>
+			<br>
+	
+		
+			<p><strong> Prix global:</strong>
+			<?php echo($_SESSION['prix']);?></p>
+			<br>
 		</article>
 	</body>
 </html>
