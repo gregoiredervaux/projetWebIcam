@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+    <link href="bootstrap/css/main.css" rel="stylesheet">
     <nav class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">

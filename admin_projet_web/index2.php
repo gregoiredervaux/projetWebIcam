@@ -16,20 +16,27 @@ catch(Exeption $e)
   die('erreur:'.$e->getMessage());
 }
 
-$liste_invite=$bd->query('SELECT nom, prenom, email, telephone, ticket_boisson, promo, date_inscription, diner, conference FROM '.$settings['confSQL']['bd_invite']);
+if (!isset($_POST['recherche'])){
+	$liste_invite=$bd->query('SELECT nom, prenom, email, telephone, ticket_boisson, promo, date_inscription, diner, conference FROM '.$settings['confSQL']['bd_invite']);
+}
+else{
+	$liste_invite=$bd->query('SELECT nom, prenom, email, telephone, ticket_boisson, promo, date_inscription, diner, conference FROM '.$settings['confSQL']['bd_invite'].' WHERE nom LIKE %'.$_POST['recherche'].'% AND prenom LIKE %'.$_POST['recherche'].'%');
+}
 ?>
 <html>
 	<body>
 		<container>
 			<div class="row"><h3 class="col-md-offset-1 col-md-11"><strong>Liste des participants au Gala</strong></h3></div>
+			<form action="index2.php" method="post">
 			<section class="row" id="recherche">
 				<div class= "col-md-offset-1 col-md-3">
-					<input type="input-medium search-query" class="form-control" placeholder="Nom, prenom...">
+					<input type="input-medium search-query" class="form-control" name="recherche" placeholder="Nom, prenom...">
 				</div>
 				<div class=col-md-2>
 					<button class="btn btn-primary" type="submit">Rechercher</button>
 				</div>
 			</section>
+			</form>
 			<br>
 				<section class="row" id="tableau">
 					<div class="col-md-offset-1 col-md-10">

@@ -1,5 +1,6 @@
 <?php
 require "class/Donnee.php";
+require "config.php";
 session_start();
 
 if (isset($_POST['statut']) && $_POST['statut']=='parent' )
@@ -49,13 +50,13 @@ var_dump($_SESSION);
 						elseif(isset($_SESSION['erreur']['bool_nb_place_depasse']))
 						{?>
 							<div class="alert alert-danger" role="alert">
-								<p> <strong>Attention !</strong> Votre enfant à déjà invité deux personnes ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> cetteputedederveaux@monnomsecritmemepascommeca.sucemaqueue</p>
+								<p> <strong>Attention !</strong> Votre enfant à déjà invité deux personnes ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> <?php echo($settings['emailContactGala']); ?></p>
 							</div>
 						<?php }
 						elseif(isset($_SESSION['erreur']['bool_doublons']))
 						{?>
 							<div class="alert alert-danger" role="alert">
-								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> cetteputedederveaux@monnomsecritmemepascommeca.sucemaqueue</p> 
+								<p> <strong>Attention !</strong> vous êtes déjà enregistré(e) ! <br> si il s'agit d'une usurpation, veuiller contacter l'adresse email si-contre:<br> <?php echo($settings['emailContactGala']); ?></p> 
 							</div>
 						<?php }
 						else
