@@ -29,7 +29,7 @@ $psw=chaine_aleatoire(20);
 
 $psw_salted=$settings['security']['prefix_salt'].$psw.$settings['security']['suffix_salt'];
 
-$psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT);
+$psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT,array('salt' => $settings['security']['default_salt']));
 
 //ici, on peut ajouter le parents sans craindre de conflits.
 $ajout_parent=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id,nom,prenom,email,telephone,ticket_boisson,promo,date_inscription,diner,conference,psw) 

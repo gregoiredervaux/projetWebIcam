@@ -115,7 +115,6 @@ if(isset($_SESSION['check_diner']))
 	if($_SESSION['check_diner']->get_value()=='on')
 	{
 		$_SESSION['prix']=$_SESSION['prix']+$settings['tarifs']['diner'];
-		// header('Location: ../payement');
 	}
 }
 elseif(isset($_SESSION['check_conference']))
@@ -123,7 +122,6 @@ elseif(isset($_SESSION['check_conference']))
 	if($_SESSION['check_conference']->get_value()=='on')
 	{
 		$_SESSION['prix']=$_SESSION['prix']+$settings['tarifs']['conf'];
-		// header('Location: ../payement');
 	}
 }
 

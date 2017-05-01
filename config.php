@@ -25,7 +25,8 @@ $settings=array(
             'ticket_boisson' => 1),
         'security' => array(
             'prefix_salt' => 'galaicam',
-            'suffix_salt' => 'promotion119')
+            'suffix_salt' => 'promotion119',
+            'default_salt' => 'mvpp6q7p7lamb3zw7915mp')
         )
 ?>
 

@@ -66,7 +66,23 @@ if (isset($_SESSION))
 								<p> <strong>Attention !</strong> le mot de passe rentré contient des caractères spéciaux non-admis</p>
 							</div>
 						<?php } ?>
+					<?php }
+				if(isset($_SESSION['erreur']['bool_mauvais_psw']))
+					{
+						if ($_SESSION['erreur']['bool_mauvais_psw']->get_value()==true)
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> le mot de passe ou l'identifiant n'est pas le bon !</p>
+							</div>
+						<?php }
+						else
+						{?>
+							<div class="alert alert-danger" role="alert">
+								<p> <strong>Attention !</strong> le mot de passe rentré contient des caractères spéciaux non-admis</p>
+							</div>
+						<?php } ?>
 					<?php } ?>
+
 
 		<fieldset>
 			<div class="input-group" id='id_place'>
