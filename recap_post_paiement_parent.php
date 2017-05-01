@@ -107,3 +107,4 @@ var_dump($_SESSION);
 		</article>
 	</body>
 </html>
+<?php $_SESSION=array(); ?>

@@ -18,6 +18,8 @@ catch(Exeption $e)
 //verifie si les données rentrées correspondent aux données demandées
 include "verif_donnee_formulaire.php";
 
+unset($_SESSION['erreur']);
+
 if (!empty($dico_erreur))
 {
 	$_SESSION['erreur']=$dico_erreur;
@@ -89,11 +91,9 @@ else
 
 //on prepare une requette pour vérifier que la personne n'est pas enregistrée deux fois
 
-$bd_inv=$settings['confSQL']['bd_invite'];
-$verif_info_double=$bd->prepare('SELECT count(*) FROM '.$bd_inv.' 
-	INNER JOIN '.$bd_icam_has_gest.' ON '.$bd_inv.'.id='.$bd_icam_has_gest.'.id_parent1 OR '.$bd_inv.'.id='.$bd_icam_has_gest.'.id_parent2 
-	INNER JOIN  '.$bd_etudiant_icam.' ON '.$bd_etudiant_icam.'.id='.$bd_icam_has_gest.'.id_icam 
-	WHERE '.$bd_inv.'.nom REGEXP :nom AND '.$bd_inv.'.prenom REGEXP :prenom AND '.$bd_etudiant_icam.'.email = :email');
+$bd_invite=$settings['confSQL']['bd_invite'];
+$verif_info_double=$bd->prepare('SELECT count(*) FROM '.$bd_invite.' 
+	WHERE nom REGEXP :nom AND prenom REGEXP :prenom AND email = :email');
 
 $nom_reg='~*'.$nom;
 $verif_info_double->bindParam('nom', $nom_reg, PDO::PARAM_STR);
@@ -101,7 +101,7 @@ $verif_info_double->bindParam('nom', $nom_reg, PDO::PARAM_STR);
 $prenom_reg='~*'.$prenom;
 $verif_info_double->bindParam('prenom', $prenom_reg, PDO::PARAM_STR);
 
-$verif_info_double->bindParam('email', $email_enf, PDO::PARAM_STR);
+$verif_info_double->bindParam('email', $email_parent, PDO::PARAM_STR);
 
 $verif_info_double->execute();
 
@@ -111,6 +111,7 @@ if($rep_verif_info_double['count(*)']!='0')
 {
 	$_SESSION['erreur']['bool_doublons']=new Donnee (true,'bool_doublons');
 	header('Location: ../form_'.($_SESSION['statut']->get_value()));
+	exit();
 }
 else
 {

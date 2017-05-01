@@ -61,7 +61,6 @@ if (!empty($dico_erreur))
 //contre faille XSS sur le dossiers settings qui va venir du serveur donc sujet a modification.
 foreach ($settings['confSQL'] as $key => $value) {
 	$settings['confSQL'][$key]=Securise::html($value);
-
 }
 
 //initialisation des variables

@@ -47,10 +47,12 @@ $ajout_inge->bindParam('email',$email_inge, PDO::PARAM_STR);
 $ajout_inge->bindParam('tel', $tel_inge, PDO::PARAM_INT);
 $ajout_inge->bindParam('nb_ticket', $nb_ticket , PDO::PARAM_STR);
 $ajout_inge->bindParam('promo', $promo , PDO::PARAM_INT);
-
-if ($_SESSION['check_conference']->get_value()=='on')
+if(isset($_SESSION['check_conference']))
 {
-	$conf_value=1;
+	if ($_SESSION['check_conference']->get_value()=='on')
+	{
+		$conf_value=1;
+	}
 }
 $ajout_inge->bindParam('conf', $conf_value, PDO::PARAM_INT);
 
@@ -70,9 +72,12 @@ $ajout_inv->bindParam('nom', $nom_inv, PDO::PARAM_STR);
 $ajout_inv->bindParam('prenom',$prenom_inv , PDO::PARAM_STR);
 $ajout_inv->bindParam('tel', $tel_inv, PDO::PARAM_INT);
 $ajout_inv->bindParam('nb_ticket', $nb_ticket_inv , PDO::PARAM_STR);
-if ($_SESSION['check_conference']->get_value()=='on')
+if(isset($_SESSION['check_conference']))
 {
-	$conf_value=1;
+	if ($_SESSION['check_conference']->get_value()=='on')
+	{
+		$conf_value=1;
+	}
 }
 $ajout_inv->bindParam('conf', $conf_value, PDO::PARAM_INT);
 

@@ -39,7 +39,7 @@ if(!isset($_SESSION['prix']))
 	if (isset($_SESSION['nb_ticket_inv_old']))
 	{
 		// echo(" ancien ticket inv ");
-		$prix=$prix+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_inv']->get_value())-$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_old']->get_value());
+		$prix=$prix+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_inv']->get_value())-$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_inv_old']->get_value());
 		// echo($prix);
 	}
 	if(isset($_SESSION['statut_inv']))

@@ -93,9 +93,9 @@ elseif($_SESSION['paiement']==false)
 				<p><strong>Prix global:</strong>
 				<?php echo($_SESSION['prix']);?></p>
 				<br>
-
 			</div>
-		
+
 		</article>
 	</body>
 </html>
+<?php $_SESSION=array(); ?>

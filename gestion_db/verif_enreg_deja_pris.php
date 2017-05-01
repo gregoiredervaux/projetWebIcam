@@ -80,7 +80,7 @@ while ($info_recup = $verif->fetch())
 			if(isset($recup_verif_inv['id_invite']))
 			{
 
-				$get_info_inv=$bd->prepare('SELECT nom,prenom,telephone FROM '.$settings['confSQL']['bd_invite'].' WHERE id= :id' );
+				$get_info_inv=$bd->prepare('SELECT nom,prenom,telephone,ticket_boisson FROM '.$settings['confSQL']['bd_invite'].' WHERE id= :id' );
 				$get_info_inv->bindParam('id', $recup_verif_inv['id_invite'], PDO::PARAM_STR);
 				$get_info_inv->execute();
 
@@ -90,6 +90,7 @@ while ($info_recup = $verif->fetch())
 				$_SESSION['nom_inv']=new Donnee($recup_get_info_inv['nom'],'nom_inv');
 				$_SESSION['prenom_inv']=new Donnee($recup_get_info_inv['prenom'],'prenom_inv');
 				$_SESSION['tel_inv']=new Donnee('0'.$recup_get_info_inv['telephone'],'tel_inv');
+				$_SESSION['nb_ticket_inv']=new Donnee($recup_get_info_inv['ticket_boisson'],'nb_ticket_inv');
 				$_SESSION['statut_inv']='old';
 
 			}
