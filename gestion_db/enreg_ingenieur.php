@@ -4,7 +4,7 @@ require "../class/Securise.php";
 require "../config.php";
 require "../random_psw.php";
 session_start();
-
+ 
 try
 {
 	$bd = new PDO('mysql:host='.$settings['confSQL']['sql_host'].';dbname='.$settings['confSQL']['sql_db'].';charset=utf8',$settings['confSQL']['sql_user'],$settings['confSQL']['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
@@ -29,11 +29,12 @@ $conf_value=0;
 
 //on genere automatiquement un mot de passe
 
+
 $psw=chaine_aleatoire(20);
 
 $psw_salted=$settings['security']['prefix_salt'].$psw.$settings['security']['suffix_salt'];
 
-$psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT);
+$psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT,array('salt' => $settings['security']['default_salt']));
 
 //ici, on peut ajouter le parents sans craindre de conflits.
 $ajout_inge=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id,nom,prenom,email,telephone,ticket_boisson,promo,date_inscription,diner,conference,psw) 
@@ -59,9 +60,10 @@ $ajout_inge->execute();
 // on recupère l'id de la dernière requete executee via PDO
 $id_inge=$bd->lastInsertId();
 
-
+if(!isset($_SESSION['pas_inv']))
+{
 $ajout_inv=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id,nom,prenom,email,telephone,ticket_boisson,promo,date_inscription,diner,conference,psw) 
-	VALUES(DEFAULT,:nom,:prenom,null,:tel,:nb_ticket,null,DEFAULT,0,:conf,:psw)');
+	VALUES(DEFAULT,:nom,:prenom,null,:tel,:nb_ticket,null,DEFAULT,0,:conf,null)');
 
 
 $ajout_inv->bindParam('nom', $nom_inv, PDO::PARAM_STR);
@@ -73,9 +75,10 @@ if ($_SESSION['check_conference']->get_value()=='on')
 	$conf_value=1;
 }
 $ajout_inv->bindParam('conf', $conf_value, PDO::PARAM_INT);
-$ajout_inv->bindParam('psw', $psw_hash, PDO::PARAM_STR);
 
 $ajout_inv->execute();
+
+
 // on recupère l'id de la dernière requete executee via PDO
 $id_inv=$bd->lastInsertId();
 
@@ -87,6 +90,7 @@ $set_lien->bindParam('id_inge', $id_inge, PDO::PARAM_INT);
 $set_lien->bindParam('id_inv', $id_inv, PDO::PARAM_INT);
 
 $set_lien->execute();
+}
 
 $_SESSION['enregistrement']="fait";
 $_SESSION['id']=$id_inge;

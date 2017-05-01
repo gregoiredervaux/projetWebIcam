@@ -3,6 +3,7 @@ require "class/Donnee.php";
 require "config.php";
 session_start();
 
+unset($_SESSION['modification']);
 if (isset($_POST['statut']) && $_POST['statut']=='ingenieur')
 {
 	if (isset($_SESSION['statut']))
@@ -226,7 +227,7 @@ if (isset($_SESSION))
 			</fieldset>
 
 			<fieldset>
-			<legend>Place invité</legend>
+			<legend>Place invité (facultatif)</legend>
 				<div class="input-group" id="nomInvit">
 		  		<span class="input-group-addon" id="sizing-addon2">Nom</span>
 				<input type="text" class="form-control" aria-describedby="sizing-addon2" name="nom_inv"

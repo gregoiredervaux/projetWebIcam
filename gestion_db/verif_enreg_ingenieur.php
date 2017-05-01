@@ -17,7 +17,47 @@ catch(Exeption $e)
 
 //verifie si les données rentrées correspondent aux données demandées
 include "verif_donnee_formulaire.php";
+unset($_SESSION['erreur']);
+unset($_SESSION['pas_inv']);
+// echo("session initiale");
+// var_dump($_SESSION);
+if (!empty($dico_erreur))
+{
+	// echo("dico");
+	// var_dump($dico_erreur);
+	
+	foreach($dico_erreur as $key => $value)
+	{
+		// echo($key." => ".$dico_erreur[$key]->get_value());
+		// var_dump($dico_erreur[$key]);
+		if(!preg_match('#[inv]$#',$key))
+		{
+			$_SESSION['erreur'][$key]=$dico_erreur[$key];
+			echo("erreur_prise en compte");
+		}
+	}
 
+	if($_SESSION['nom_inv']->get_value()=='' && $_SESSION['prenom_inv']->get_value()=='')
+	{
+		$_SESSION['nom_inv']->set_verif(true);
+		$_SESSION['prenom_inv']->set_verif(true);
+		$_SESSION['nb_ticket_inv']->set_verif(true);
+		$_SESSION['tel_inv']->set_verif(true);
+		$_SESSION['pas_inv']=true;
+	}
+	else
+	{
+		$_SESSION['erreur']=$dico_erreur;
+		header("Location: ../form_ingenieur");
+		exit();
+	}
+	// echo("session");
+	// var_dump($_SESSION['erreur']);
+	// die();
+	
+}
+// echo("session apres erreur");
+// var_dump($_SESSION);
 //contre faille XSS sur le dossiers settings qui va venir du serveur donc sujet a modification.
 foreach ($settings['confSQL'] as $key => $value) {
 	$settings['confSQL'][$key]=Securise::html($value);
@@ -31,11 +71,10 @@ $prenom=$_SESSION['prenom']->get_value();
 $email_inge=$_SESSION['email']->get_value();
 $nb_ticket=$_SESSION['nb_ticket']->get_value();
 $nb_ticket_inv=$_SESSION['nb_ticket_inv']->get_value();
-$conf=$_SESSION['check_conference']->get_value();
 
 
 
-//on prepare une requette pour vérifier qu'il y a bien une place de libre avec cet enfant !
+//on prepare une requette pour vérifier qu'il y a bien une place de libre !
 $nb_max=$settings['quotas']['ingenieurs'];
 $bd_invite=$settings['confSQL']['bd_invite'];
 
@@ -50,13 +89,14 @@ if (intval($rep_valide_nb_place)>=$nb_max)
 {
 	$_SESSION['erreur']['bool_nb_place_depasse']=new Donnee (true,'bool_nb_place_depasse');
 	header('Location: ../index.php');
+	exit();
 }
 
 
 //on prepare une requette pour vérifier que la personne n'est pas enregistrée deux fois
 
 $verif_info_double=$bd->prepare('SELECT count(*) FROM '.$bd_invite.' 
-	WHERE '.$bd_inv.'.nom REGEXP :nom AND '.$bd_inv.'.prenom REGEXP :prenom AND '.$bd_invite.'.email = :email');
+	WHERE nom REGEXP :nom AND prenom REGEXP :prenom AND email = :email');
 
 $nom_reg='~*'.$nom;
 $verif_info_double->bindParam('nom', $nom_reg, PDO::PARAM_STR);
@@ -64,34 +104,50 @@ $verif_info_double->bindParam('nom', $nom_reg, PDO::PARAM_STR);
 $prenom_reg='~*'.$prenom;
 $verif_info_double->bindParam('prenom', $prenom_reg, PDO::PARAM_STR);
 
-$verif_info_double->bindParam('email', $email_enf, PDO::PARAM_STR);
+$verif_info_double->bindParam('email', $email_inge, PDO::PARAM_STR);
 
 $verif_info_double->execute();
 
 $rep_verif_info_double=$verif_info_double->fetch();
 
+// echo("recup_info double");
+// var_dump($rep_verif_info_double);
+
 if($rep_verif_info_double['count(*)']!='0')
 {
 	$_SESSION['erreur']['bool_doublons']=new Donnee (true,'bool_doublons');
 	header('Location: ../form_'.($_SESSION['statut']->get_value()));
+	exit();
 }
 else
 {
 	unset($_SESSION['erreur']['bool_doublons']);
 }
+$nb_pers=2;
+if(isset($_SESSION['pas_inv']))
+{
+	if($_SESSION['pas_inv']==true)
+	{
+		$nb_pers=1;
+	}
+}
 
-$_SESSION['prix']=2*$settings['tarifs']['place'];
+$_SESSION['prix']=$nb_pers*$settings['tarifs']['place'];
 if(isset($_SESSION['check_conference']))
 {
 	if($_SESSION['check_conference']->get_value()=='on')
 	{
-		$_SESSION['prix']=$_SESSION['prix']+2*$settings['tarifs']['conf'];
+		$_SESSION['prix']=$_SESSION['prix']+$nb_pers*$settings['tarifs']['conf'];
 	}
 }
 
 if(isset($_SESSION['nb_ticket']))
 {
 	$_SESSION['prix']=$_SESSION['prix']+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket']->get_value());
+}
+if(isset($_SESSION['nb_ticket_inv']))
+{
+	$_SESSION['prix']=$_SESSION['prix']+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_inv']->get_value());
 }
 $_SESSION['verif']=true;
  header("Location: ../recap_avant_paiement_ingenieur.php");

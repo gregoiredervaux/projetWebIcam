@@ -6,16 +6,16 @@ session_start();
 
 $prix=intval($_SESSION['prix']);
 
-if (isset($_SESSION['ancien_prix']))
-{
-	if($prix-$_SESSION['ancien_prix']>0)
-	{
-		$prix=$prix-$_SESSION['ancien_prix'];
-	}
-}
-
 //paiement
 
 $_SESSION['paiement']=true;
-header('Location: gestion_db/enreg_'.$_SESSION['statut']->get_value().'.php');
+if(isset($_SESSION['modification']))
+{
+	header('Location: gestion_db/enreg_modif_'.$_SESSION['statut']->get_value().'.php');
+	exit();
+}
+else
+{
+	header('Location: gestion_db/enreg_'.$_SESSION['statut']->get_value().'.php');
+}
 ?>

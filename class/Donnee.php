@@ -88,7 +88,7 @@ class Donnee
 
 	function isNom()
 	{
-		return (is_string($this->get_value()) && $this->lengthLessThan(50));
+		return (is_string($this->get_value()) && $this->lengthLessThan(50) && $this->get_value()!='');
 	}
 
 	function isPrenom()
@@ -127,7 +127,7 @@ class Donnee
 
 	function isCheck()
 	{
-		return ($this->get_value()=='on');
+		return ($this->get_value()=='on' || $this->get_value()==null );
 	}
 
 	function isId()

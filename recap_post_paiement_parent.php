@@ -14,6 +14,8 @@ elseif($_SESSION['paiement']==false)
 	header("Location: mauvais_chemin.php");
 }
 
+var_dump($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,8 +58,13 @@ elseif($_SESSION['paiement']==false)
 			<p><strong>Adresse email personnelle:</strong>
 			<?php echo('    '.$_SESSION['email']->get_value());?></p>
 
-			<p><strong>Adresse email de l'enfant référent:</strong>
-			<?php echo('    '.$_SESSION['email_enf']->get_value());?></p>
+			<?php
+			if (!isset($_SESSION['modification']))
+			{ ?>
+
+				<p><strong>Adresse email de l'enfant référent:</strong>
+				<?php echo($_SESSION['email_enf']->get_value());?></p>
+			<?php } ?>
 			
 			<p><strong>Telephone:</strong>
 			<?php echo('    '.$_SESSION['tel']->get_value());?></p>
@@ -65,28 +72,29 @@ elseif($_SESSION['paiement']==false)
 			<p><strong>Participation à la conférence:</strong>
 			<?php if(isset($_SESSION['check_conference']))
 						{
-							if($_SESSION['check_conference']->get_value()=='on')
+							if($_SESSION['check_conference']->get_value()=='on' || $_SESSION['check_conference']->get_value()=='1')
 							{ ?>
 								oui</p>
 							<?php }
-						}
 						else
 							{?>
 								non</p>
-							<?php } ?>
+							
+							<?php }
+						} ?>
 
 			<p><strong>Participation au diner:</strong>
 			<?php if(isset($_SESSION['check_diner']))
 						{
-							if($_SESSION['check_diner']->get_value()=='on')
+							if($_SESSION['check_diner']->get_value()=='on' || $_SESSION['check_diner']->get_value()=='1')
 							{ ?>
 								oui</p>
 							<?php }
-						}
 						else
 							{?>
 								non</p>
-							<?php } ?>
+							<?php }
+						} ?>
 
 			<p><strong>Nombre de tickets boisson:</strong>
 			<?php echo($_SESSION['nb_ticket']->get_value());?></p>

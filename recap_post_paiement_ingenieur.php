@@ -75,7 +75,9 @@ elseif($_SESSION['paiement']==false)
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>
 				<br>
 
-				<p><strong>Noms de l'invité:</strong>
+				<?php if(isset($_SESSION['inv']))
+				{ ?>
+					<p><strong>Noms de l'invité:</strong>
 				<?php echo($_SESSION['nom_inv']->get_value());?></p>
 				
 				<p><strong>Prenom de l'invité:</strong>
@@ -86,6 +88,7 @@ elseif($_SESSION['paiement']==false)
 
 				<p><strong>Nombre de tickets boisson de l'invité:</strong>
 				<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
+				<?php } ?>
 				
 				<p><strong>Prix global:</strong>
 				<?php echo($_SESSION['prix']);?></p>

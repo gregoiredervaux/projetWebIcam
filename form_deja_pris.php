@@ -87,10 +87,10 @@ if (isset($_SESSION))
 		<fieldset>
 			<div class="input-group" id='id_place'>
 		  		<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-		  		<input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon2" name="email_place"
-		  		<?php if (isset($_SESSION['email_place']))
+		  		<input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon2" name="email"
+		  		<?php if (isset($_SESSION['email']))
 				{?> 
-					value=<?php echo($_SESSION['email_place']->get_value());
+					value=<?php echo($_SESSION['email']->get_value());
 				}?> >
 			</div>
 			<br>

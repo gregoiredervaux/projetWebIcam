@@ -1,8 +1,7 @@
 <?php
-require "../class/nettoyer.php";
+require "/class/nettoyer.php";
 $dico_donnee=array();
-// echo("session au depart des de l'enregistrement des données");
-// var_dump($_SESSION);
+
 $_SESSION['erreur']=null;
 
 //on evite toute faille XSS
@@ -18,19 +17,17 @@ foreach ($_POST as $key => $value)
 	//extraction des données du post, vérifiaction des types d'input
 	$dico_donnee[$key]= new Donnee($value,$key);
 	//test des données du formulaire, vérifiaction des valeurs d'input
-	// echo("dico_donnee:".$key);
-	// var_dump($dico_donnee[$key]);
-
+	
 
 	$dico_donnee[$key]->verif_value();
 	if (!isset($_SESSION[$key]))
 	{
 		$_SESSION[$key]=$dico_donnee[$key];
-		// echo($key." n'est pas definie \n");
+	
 	}
 	elseif($_SESSION[$key]->get_value()!=$dico_donnee[$key]->get_value())
 	{
-		// echo("modification de la valeur: ".$_SESSION[$key]."   ");
+		$_SESSION[$key.'_old']=$_SESSION[$key];
 		$_SESSION[$key]=$dico_donnee[$key];
 	}
 	if ($dico_donnee[$key]->get_verif()==false)
@@ -46,5 +43,9 @@ foreach ($_POST as $key => $value)
 	}
 }
 
-
+if (!empty($dico_erreur))
+{
+	$_SESSION['erreur']=$dico_erreur;
+	header('Location: ../form_modif_'.($_SESSION['statut']->get_value()));;
+}
 ?>
