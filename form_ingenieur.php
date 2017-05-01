@@ -140,14 +140,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >0</option>
 
-		           <option value=5 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='5')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >5</option>
-
 		           <option value=10 <?php if (isset($_SESSION['nb_ticket']))
       										{
       											if ($_SESSION['nb_ticket']->get_value()=='10')
@@ -155,14 +147,6 @@ if (isset($_SESSION))
       													selected
       												<?php }
       										}?> >10</option>
-
-		           <option value=15 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='15')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >15</option>
 
 		           <option value=20 <?php if (isset($_SESSION['nb_ticket']))
       										{
@@ -172,14 +156,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >20</option>
 
-		           <option value=25 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='25')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >25</option>
-
 		           <option value=30 <?php if (isset($_SESSION['nb_ticket']))
       										{
       											if ($_SESSION['nb_ticket']->get_value()=='30')
@@ -188,14 +164,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >30</option>
 
-		           <option value=35 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='35')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >35</option>
-
 		           <option value=40 <?php if (isset($_SESSION['nb_ticket']))
       										{
       											if ($_SESSION['nb_ticket']->get_value()=='40')
@@ -203,14 +171,6 @@ if (isset($_SESSION))
       													selected
       												<?php }
       										}?> >40</option>
-
-		           <option value=45 <?php if (isset($_SESSION['nb_ticket']))
-      										{
-      											if ($_SESSION['nb_ticket']->get_value()=='45')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >45</option>
 
 		           <option value=50 <?php if (isset($_SESSION['nb_ticket']))
       										{
@@ -268,14 +228,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >0</option>
 
-		           <option value=5 <?php if (isset($_SESSION['nb_ticket_inv']))
-      										{
-      											if ($_SESSION['nb_ticket_inv']->get_value()=='5')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >5</option>
-
 		           <option value=10 <?php if (isset($_SESSION['nb_ticket_inv']))
       										{
       											if ($_SESSION['nb_ticket_inv']->get_value()=='10')
@@ -284,13 +236,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >10</option>
 
-		           <option value=15 <?php if (isset($_SESSION['nb_ticket_inv']))
-      										{
-      											if ($_SESSION['nb_ticket_inv']->get_value()=='15')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >15</option>
 
 		           <option value=20 <?php if (isset($_SESSION['nb_ticket_inv']))
       										{
@@ -300,14 +245,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >20</option>
 
-		           <option value=25 <?php if (isset($_SESSION['nb_ticket_inv']))
-      										{
-      											if ($_SESSION['nb_ticket_inv']->get_value()=='25')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >25</option>
-
 		           <option value=30 <?php if (isset($_SESSION['nb_ticket_inv']))
       										{
       											if ($_SESSION['nb_ticket_inv']->get_value()=='30')
@@ -316,14 +253,6 @@ if (isset($_SESSION))
       												<?php }
       										}?> >30</option>
 
-		           <option value=35 <?php if (isset($_SESSION['nb_ticket_inv']))
-      										{
-      											if ($_SESSION['nb_ticket_inv']->get_value()=='35')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >35</option>
-
 		           <option value=40 <?php if (isset($_SESSION['nb_ticket_inv']))
       										{
       											if ($_SESSION['nb_ticket_inv']->get_value()=='40')
@@ -331,14 +260,6 @@ if (isset($_SESSION))
       													selected
       												<?php }
       										}?> >40</option>
-
-		           <option value=45 <?php if (isset($_SESSION['nb_ticket_inv']))
-      										{
-      											if ($_SESSION['nb_ticket_inv']->get_value()=='45')
-      												{?>
-      													selected
-      												<?php }
-      										}?> >45</option>
 
 		           <option value=50 <?php if (isset($_SESSION['nb_ticket_inv']))
       										{

@@ -35,13 +35,13 @@ if(!isset($_SESSION['prix']))
 	{
 		$prix=$prix+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket']->get_value())-$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_old']->get_value());
 	}
-	
+	$_SESSION['prix']=$prix;
 }
 		
 
-$_SESSION['prix']=$prix;
+
 var_dump($_SESSION);
-}
+
 ?>
 <html>
 	<head>

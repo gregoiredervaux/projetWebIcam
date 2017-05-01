@@ -19,10 +19,6 @@ if(isset($_SESSION['modification']))
 {
 	//verification des données incluses par l'utilisateur
 	require "gestion_db/verif_modif_donnee_formulaire.php";
-	if(isset($_SESSION['nom_inv']) && !isset($_SESSION['nom_inv_old']))
-	{
-		$_SESSION['inv_new']=true;
-	}
 }
 
 if(!isset($_SESSION['prix']))
@@ -30,20 +26,42 @@ if(!isset($_SESSION['prix']))
 	$prix=0;
 	if(isset($_SESSION['check_conference_old']))
 	{
+		// echo(" conférence ");
 		$prix=$prix+$settings['tarifs']['conf'];
+		// echo($prix);
 	}
 	if (isset($_SESSION['nb_ticket_old']))
 	{
+		// echo(" ancien ticket ingé ");
 		$prix=$prix+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket']->get_value())-$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_old']->get_value());
+		// echo($prix);
 	}
-	if(isset($_SESSION['inv_new']))
+	if (isset($_SESSION['nb_ticket_inv_old']))
 	{
-		// if($_SESSION['nom_inv']->get_value()!=)
-		$prix=$prix+$settings['tarifs']['place'];
+		// echo(" ancien ticket inv ");
+		$prix=$prix+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_inv']->get_value())-$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_old']->get_value());
+		// echo($prix);
+	}
+	if(isset($_SESSION['statut_inv']))
+	{
+		if ($_SESSION['statut']=='new')
+		{
+			// echo(" place+nouv ticket");
+			// if($_SESSION['nom_inv']->get_value()!=)
+			$prix=$prix+$settings['tarifs']['place'];
+			$prix=$prix+$settings['tarifs']['ticket_boisson']*intval($_SESSION['nb_ticket_inv']->get_value());
+			// echo($prix);
+		}
 	}
 	$_SESSION['prix']=$prix;
 }
-
+if(isset($_SESSION['statut_inv']))
+{
+	if($_SESSION['statut_inv']=='empty' && isset($_SESSION['nom_inv']))
+	{
+		$_SESSION['statut_inv']='new';
+	}
+}
 
 var_dump($_SESSION);
 ?>
@@ -86,7 +104,7 @@ var_dump($_SESSION);
 				<p><strong>Participation à la conférence:</strong>
 				<?php if(isset($_SESSION['check_conference']))
 							{
-								if($_SESSION['check_conference']->get_value()=='on')
+								if($_SESSION['check_conference']->get_value()=='on' || $_SESSION['check_conference']->get_value()=='1')
 								{ ?>
 									oui</p>
 								<?php }
@@ -99,20 +117,23 @@ var_dump($_SESSION);
 				<p><strong>Nombre de tickets boisson:</strong>
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>
 				<br>
-					<?php if(isset($_SESSION['inv_new']))
-					{ ?>
-						<p><strong>Noms de l'invité:</strong>
-					<?php echo($_SESSION['nom_inv']->get_value());?></p>
-					
-					<p><strong>Prenom de l'invité:</strong>
-					<?php echo($_SESSION['prenom_inv']->get_value());?></p>
+					<?php if(isset($_SESSION['statut_inv']))
+					{ 
+						if($_SESSION['statut_inv']!='empty')
+						{ ?>
+							<p><strong>Nom de l'invité:</strong>
+							<?php echo($_SESSION['nom_inv']->get_value());?></p>
+							
+							<p><strong>Prenom de l'invité:</strong>
+							<?php echo($_SESSION['prenom_inv']->get_value());?></p>
 
-					<p><strong>Telephone de l'invité:</strong>
-					<?php echo($_SESSION['tel_inv']->get_value());?></p>
+							<p><strong>Telephone de l'invité:</strong>
+							<?php echo($_SESSION['tel_inv']->get_value());?></p>
 
-					<p><strong>Nombre de tickets boisson de l'invité:</strong>
-					<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
-					<?php } ?>
+							<p><strong>Nombre de tickets boisson de l'invité:</strong>
+							<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
+					<?php }
+					} ?>
 				
 				<p><strong>Prix global:</strong>
 				<?php echo($_SESSION['prix']);?></p>
@@ -123,8 +144,13 @@ var_dump($_SESSION);
 				{ ?>
 					<div class="col-md-offset-1">
 					<div class="btn-group" role="group" id="valider">	
-						<a href="paiement.php"><button type="button" class="btn btn-default">Payer</button></a>
-  						<a href="form_modification_ingenieur.php"><button type="button" class="btn btn-default">Retour au formulaire</button></a>
+						<a href="paiement.php"><button type="button" class="btn btn-default">
+							<?php if($_SESSION['prix']==0)
+							{ ?>Modifier<?php }
+							else
+							{
+								?>Payer<?php } ?></button></a>
+  						<a href="form_modif_ingenieur.php"><button type="button" class="btn btn-default">Retour au formulaire</button></a>
   					</div>
 				</div>
 				<?php }
@@ -133,7 +159,12 @@ var_dump($_SESSION);
 
 				<div class="col-md-offset-1">
 					<div class="btn-group" role="group" id="valider">	
-						<a href="paiement.php"><button type="button" class="btn btn-default">Payer</button></a>
+						<a href="paiement.php"><button type="button" class="btn btn-default">
+						<?php if($_SESSION['prix']==0)
+							{ ?>Modifier<?php }
+							else
+							{
+								?>Payer<?php } ?></button></a>
   						<a href="form_ingenieur.php"><button type="button" class="btn btn-default">Retour au formulaire</button></a>
   					</div>
 				</div>

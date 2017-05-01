@@ -69,7 +69,6 @@ while ($info_recup = $verif->fetch())
 			$_SESSION['nb_ticket']=new Donnee($info_recup['ticket_boisson'],'nb_ticket');
 			$_SESSION['check_diner']=new Donnee($info_recup['diner'],'check_diner');
 			$_SESSION['check_conference']=new Donnee($info_recup['conference'],'check_conference');
-			$_SESSION['modification']=true;	
 		}
 		else
 		{
@@ -77,22 +76,26 @@ while ($info_recup = $verif->fetch())
 			$verif_inv->bindParam('id_inge', $info_recup['id'], PDO::PARAM_STR);
 			$verif_inv->execute();
 			$recup_verif_inv=$verif_inv->fetch();
+			$_SESSION['statut_inv']='new';
 			if(isset($recup_verif_inv['id_invite']))
 			{
+
 				$get_info_inv=$bd->prepare('SELECT nom,prenom,telephone FROM '.$settings['confSQL']['bd_invite'].' WHERE id= :id' );
 				$get_info_inv->bindParam('id', $recup_verif_inv['id_invite'], PDO::PARAM_STR);
 				$get_info_inv->execute();
 
 				$recup_get_info_inv=$get_info_inv->fetch();
 
+				$_SESSION['id_inv']=new Donnee($recup_get_info_inv['id_invite'],'id_inv');
 				$_SESSION['nom_inv']=new Donnee($recup_get_info_inv['nom'],'nom_inv');
 				$_SESSION['prenom_inv']=new Donnee($recup_get_info_inv['prenom'],'prenom_inv');
-				$_SESSION['tel_inv']=new Donnee($recup_get_info_inv['telephone'],'tel_inv');
+				$_SESSION['tel_inv']=new Donnee('0'.$recup_get_info_inv['telephone'],'tel_inv');
+				$_SESSION['statut_inv']='old';
 
 			}
 			else
 			{
-				$_SESSION['pas_inv']=true;
+				$_SESSION['statut_inv']='empty';
 			}
 
 			$_SESSION['statut']=new Donnee('ingenieur','statut');
@@ -101,8 +104,8 @@ while ($info_recup = $verif->fetch())
 			$_SESSION['tel']=new Donnee('0'.$info_recup['telephone'],'tel');
 			$_SESSION['nb_ticket']=new Donnee($info_recup['ticket_boisson'],'nb_ticket');
 			$_SESSION['check_conference']=new Donnee($info_recup['conference'],'check_conference');	
-			$_SESSION['modification']=true;
 		}
+		$_SESSION['modification']=true;
 		$sortir=true;
 	}
 }
@@ -110,5 +113,7 @@ while ($info_recup = $verif->fetch())
 if($sortir==false)
 {
 	$_SESSION['erreur']['bool_mauvais_psw']=new Donnee(true, 'bool_mauvais_psw');
+	header('Location: ../form_deja_pris.php');
+	exit();
 }
 header('Location: ../form_modif_'.($_SESSION['statut']->get_value()));
