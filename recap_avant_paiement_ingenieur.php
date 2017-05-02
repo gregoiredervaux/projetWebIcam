@@ -107,11 +107,11 @@ if(isset($_SESSION['statut_inv']))
 								{ ?>
 									oui</p>
 								<?php }
+							}
 							else
 								{?>
 									non</p>
-								<?php }
-							} ?>
+								<?php } ?>
 
 				<p><strong>Nombre de tickets boisson:</strong>
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>

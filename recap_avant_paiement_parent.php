@@ -27,7 +27,7 @@ if(!isset($_SESSION['prix']))
 		$prix=$prix+$settings['tarifs']['conf'];
 	}
 	// si il a selectionner le diner on ne lui fait pas payer la conférence
-	elseif (isse($_SESSION['check_conference_old']))
+	elseif (isset($_SESSION['check_conference_old']))
 	{
 		$prix=$prix+$settings['tarifs']['diner'];
 	}
@@ -85,11 +85,11 @@ if(!isset($_SESSION['prix']))
 							{ ?>
 								oui</p>
 							<?php }
-						else
+						}
+							else
 							{?>
 								non</p>
-							<?php }
-						} ?>
+							<?php } ?>
 
 			<p><strong>Participation au diner:</strong>
 			<?php if(isset($_SESSION['check_diner']))
@@ -98,11 +98,11 @@ if(!isset($_SESSION['prix']))
 							{ ?>
 								oui</p>
 							<?php }
-						else
+						}
+							else
 							{?>
 								non</p>
-							<?php }
-						} ?>
+							<?php } ?>
 
 			<p><strong>Nombre de tickets boisson:</strong>
 			<?php echo($_SESSION['nb_ticket']->get_value());?></p>

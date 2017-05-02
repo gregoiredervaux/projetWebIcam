@@ -45,6 +45,16 @@ foreach ($_POST as $key => $value)
 		}
 	}
 }
+foreach ($_SESSION as $key => $value) 
+{
+	if(preg_match('#^check#',$key))
+	{
+		if(isset($_SESSION[$key]) && !isset($dico_donnee[$key]))
+		{
+			unset($_SESSION[$key]);
+		}
+	}
+}
 
 
 ?>
