@@ -72,7 +72,7 @@ while ($info_recup = $verif->fetch())
 		}
 		else
 		{
-			$verif_inv=$bd->prepare('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_gest'].' WHERE id_inge= :id_inge');
+			$verif_inv=$bd->prepare('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_inge= :id_inge');
 			$verif_inv->bindParam('id_inge', $info_recup['id'], PDO::PARAM_STR);
 			$verif_inv->execute();
 			$recup_verif_inv=$verif_inv->fetch();

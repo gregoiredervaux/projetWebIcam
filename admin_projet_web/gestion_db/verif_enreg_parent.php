@@ -65,10 +65,10 @@ else
 
 //on prepare une requette pour vérifier qu'il y a bien une place de libre avec cet enfant !
 $bd_etudiant_icam=$settings['confSQL']['bd_etudiant_icam'];
-$bd_icam_has_gest=$settings['confSQL']['bd_icam_has_guest'];
+$bd_icam_has_guest=$settings['confSQL']['bd_icam_has_guest'];
 
 $valid_nb_place=$bd->prepare ('SELECT id,id_parent1,id_parent2 FROM '.$bd_etudiant_icam.' 
-	INNER JOIN '.$bd_icam_has_gest.' ON '.$bd_etudiant_icam.'.id='.$bd_icam_has_gest.'.id_icam 
+	INNER JOIN '.$bd_icam_has_guest.' ON '.$bd_etudiant_icam.'.id='.$bd_icam_has_guest.'.id_icam 
 	WHERE email= :email');
 
 $valid_nb_place->bindParam('email', $email_enf, PDO::PARAM_STR);
@@ -92,7 +92,7 @@ else
 
 $bd_inv=$settings['confSQL']['bd_invite'];
 $verif_info_double=$bd->prepare('SELECT count(*) FROM '.$bd_inv.' 
-	INNER JOIN '.$bd_icam_has_gest.' ON '.$bd_inv.'.id='.$bd_icam_has_gest.'.id_parent1 OR '.$bd_inv.'.id='.$bd_icam_has_gest.'.id_parent2 
+	INNER JOIN '.$bd_icam_has_guest.' ON '.$bd_inv.'.id='.$bd_icam_has_guest.'.id_parent1 OR '.$bd_inv.'.id='.$bd_icam_has_guest.'.id_parent2 
 	INNER JOIN  '.$bd_etudiant_icam.' ON '.$bd_etudiant_icam.'.id='.$bd_icam_has_gest.'.id_icam 
 	WHERE '.$bd_inv.'.nom REGEXP :nom AND '.$bd_inv.'.prenom REGEXP :prenom AND '.$bd_etudiant_icam.'.email = :email');
 

@@ -68,7 +68,7 @@ $id_parent=$bd->lastInsertId();
 
 //on fait met a jour la relation icam/parent
 
-$recup_lien=$bd->prepare('SELECT id,id_parent1 FROM '.$settings['confSQL']['bd_icam_has_gest'].' AS bd_lien
+$recup_lien=$bd->prepare('SELECT id,id_parent1 FROM '.$settings['confSQL']['bd_icam_has_guest'].' AS bd_lien
 	INNER JOIN '.$settings['confSQL']['bd_etudiant_icam'].' AS bd_icam ON bd_icam.id=bd_lien.id_icam
 	WHERE email= :email');
 
@@ -88,7 +88,7 @@ if (!isset($recup_lien_value['id']))
 
 	//on a toutes les infos pour mettre a jour le lien
 
-	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_icam_has_gest'].'(id_icam,id_parent1)
+	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_icam_has_guest'].'(id_icam,id_parent1)
 		VALUES( :id , :id_parent1 )');
 
 	$set_lien->bindParam('id', $id['id'], PDO::PARAM_INT);
@@ -102,7 +102,7 @@ else
 
 	//on a toutes les infos pour mettre a jour le lien
 
-	$set_lien=$bd->prepare('UPDATE '.$settings['confSQL']['bd_icam_has_gest'].' SET id_parent2= :id_parent2');
+	$set_lien=$bd->prepare('UPDATE '.$settings['confSQL']['bd_icam_has_guest'].' SET id_parent2= :id_parent2');
 	$set_lien->bindParam('id_parent2', $id_parent, PDO::PARAM_INT);
 
 	$set_lien->execute();

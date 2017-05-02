@@ -88,7 +88,7 @@ $ajout_inv->execute();
 $id_inv=$bd->lastInsertId();
 
 //on fait met a jour la relation icam/parent
-$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_inge_has_gest'].'(id_inge,id_invite)
+$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_inge_has_guest'].'(id_inge,id_invite)
 		VALUES( :id_inge , :id_inv )');
 
 $set_lien->bindParam('id_inge', $id_inge, PDO::PARAM_INT);

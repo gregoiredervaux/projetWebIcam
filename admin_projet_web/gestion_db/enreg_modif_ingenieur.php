@@ -71,7 +71,7 @@ if($_SESSION['statut_inv']=='new')
 
 	$id_inv=$bd->lastInsertId();
 
-	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_inge_has_gest'].'(id_inge,id_invite)
+	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_inge_has_guest'].'(id_inge,id_invite)
 		VALUES( :id_inge , :id_inv )');
 
 	$set_lien->bindParam('id_inge', $id, PDO::PARAM_INT);
@@ -82,7 +82,7 @@ if($_SESSION['statut_inv']=='new')
 elseif($_SESSION['statut_inv']='old')
 {
 	
-	$recup_id_inv=$bd->prepare('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_gest'].' WHERE id_inge= :id');
+	$recup_id_inv=$bd->prepare('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_inge= :id');
 	$recup_id_inv->bindParam('id', $id,PDO::PARAM_STR);
 	$recup_id_inv->execute();
 	$donnee_id_inv=$recup_id_inv->fetch();

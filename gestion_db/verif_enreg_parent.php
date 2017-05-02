@@ -67,10 +67,10 @@ else
 
 //on prepare une requette pour vérifier qu'il y a bien une place de libre avec cet enfant !
 $bd_etudiant_icam=$settings['confSQL']['bd_etudiant_icam'];
-$bd_icam_has_gest=$settings['confSQL']['bd_icam_has_gest'];
+$bd_icam_has_guest=$settings['confSQL']['bd_icam_has_guest'];
 
 $valid_nb_place=$bd->prepare ('SELECT id,id_parent1,id_parent2 FROM '.$bd_etudiant_icam.' 
-	INNER JOIN '.$bd_icam_has_gest.' ON '.$bd_etudiant_icam.'.id='.$bd_icam_has_gest.'.id_icam 
+	INNER JOIN '.$bd_icam_has_guest.' ON '.$bd_etudiant_icam.'.id='.$bd_icam_has_guest.'.id_icam 
 	WHERE email= :email');
 
 $valid_nb_place->bindParam('email', $email_enf, PDO::PARAM_STR);
