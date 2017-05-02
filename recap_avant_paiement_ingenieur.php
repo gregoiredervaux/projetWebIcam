@@ -4,6 +4,8 @@ require "/class/Securise.php";
 include ('/config.php');
 session_start();
 
+var_dump($_SESSION);
+
 if(!isset($_SESSION['verif']))
 {
 	header("Location: mauvais_chemin.php");
@@ -116,9 +118,9 @@ if(isset($_SESSION['statut_inv']))
 				<p><strong>Nombre de tickets boisson:</strong>
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>
 				<br>
-					<?php if(isset($_SESSION['statut_inv']))
+					<?php if(isset($_SESSION['pas_inv']))
 					{ 
-						if($_SESSION['statut_inv']!='empty')
+						elseif($_SESSION['pas_inv']!=true)
 						{ ?>
 							<p><strong>Nom de l'invité:</strong>
 							<?php echo($_SESSION['nom_inv']->get_value());?></p>

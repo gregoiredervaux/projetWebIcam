@@ -63,7 +63,7 @@ $ajout_inge->execute();
 // on recupère l'id de la dernière requete executee via PDO
 $id_inge=$bd->lastInsertId();
 
-if(!isset($_SESSION['pas_inv']))
+if(($_SESSION['pas_inv'])==false)
 {
 $ajout_inv=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_invite'].'(id,nom,prenom,email,telephone,ticket_boisson,promo,date_inscription,diner,conference,psw) 
 	VALUES(DEFAULT,:nom,:prenom,null,:tel,:nb_ticket,null,DEFAULT,0,:conf,null)');

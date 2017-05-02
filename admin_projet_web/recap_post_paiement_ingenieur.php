@@ -24,9 +24,6 @@ include ('/config.php');
 
 		<p><strong>Identifiant:</strong>
 		<?php echo($_SESSION['email']->get_value());?><p>
-
-		<p><strong>Mot de passe:</strong>
-		<?php echo($_SESSION['psw']);?><p>
 		<br>
 			
 			<h1> <Strong>  Récapitulatif:</Strong></h1>
@@ -61,9 +58,9 @@ include ('/config.php');
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>
 				<br>
 
-				<?php if(isset($_SESSION['pas_inv']))
+				<?php if(!isset($_SESSION['pas_inv']))
 				{ 
-					if($_SESSION['pas_inv']==false)
+					if($_SESSION['statut']!='empty')
 					{ ?>
 					<p><strong>Noms de l'invité:</strong>
 				<?php echo($_SESSION['nom_inv']->get_value());?></p>

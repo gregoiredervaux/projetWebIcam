@@ -13,7 +13,7 @@ foreach ($_POST as $key => $value)
 
 foreach ($_POST as $key => $value)
 {
-
+ 
 	//extraction des données du post, vérifiaction des types d'input
 	$dico_donnee[$key]= new Donnee($value,$key);
 	//test des données du formulaire, vérifiaction des valeurs d'input

@@ -14,6 +14,23 @@ catch(Exeption $e)
 	die('erreur:'.$e->getMessage());
 }
 
+if(isset($_SESSION['statut_inv']))
+{
+	if($_SESSION['statut_inv']=='empty' && isset($_SESSION['nom_inv']))
+	{
+		$_SESSION['statut_inv']='new';
+	}
+}
+
+// echo("session av");
+// var_dump($_SESSION);
+
+require "./verif_modif_donnee_formulaire.php";
+
+// echo("session av");
+// var_dump($_SESSION);
+// die();
+
 //initialisation des variables
 $id=$_SESSION['id']->get_value();
 $nom=$_SESSION['nom']->get_value();
@@ -71,7 +88,7 @@ if($_SESSION['statut_inv']=='new')
 
 	$id_inv=$bd->lastInsertId();
 
-	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_inge_has_gest'].'(id_inge,id_invite)
+	$set_lien=$bd->prepare('INSERT INTO '.$settings['confSQL']['bd_inge_has_guest'].'(id_inge,id_invite)
 		VALUES( :id_inge , :id_inv )');
 
 	$set_lien->bindParam('id_inge', $id, PDO::PARAM_INT);
@@ -79,10 +96,10 @@ if($_SESSION['statut_inv']=='new')
 
 	$set_lien->execute();
 }
-elseif($_SESSION['statut_inv']='old')
+elseif($_SESSION['statut_inv']=='old')
 {
 	
-	$recup_id_inv=$bd->prepare('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_gest'].' WHERE id_inge= :id');
+	$recup_id_inv=$bd->prepare('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_inge= :id');
 	$recup_id_inv->bindParam('id', $id,PDO::PARAM_STR);
 	$recup_id_inv->execute();
 	$donnee_id_inv=$recup_id_inv->fetch();
@@ -92,7 +109,7 @@ elseif($_SESSION['statut_inv']='old')
 	$nom_inv=$_SESSION['nom_inv']->get_value();
 	$prenom_inv=$_SESSION['prenom_inv']->get_value();
 	$nb_ticket_inv=$_SESSION['nb_ticket_inv']->get_value();
-	$tel_inv=$_SESSION['tel_inv'];
+	$tel_inv=$_SESSION['tel_inv']->get_value();
 
 	$set_inv=$bd->prepare('UPDATE '.$settings['confSQL']['bd_invite'].'
 		SET 
@@ -105,8 +122,8 @@ elseif($_SESSION['statut_inv']='old')
 
 	$set_inv->bindParam('nom', $nom_inv,PDO::PARAM_STR);
 	$set_inv->bindParam('prenom', $prenom_inv,PDO::PARAM_STR);
-	$set_inv->bindParam('tel', $tel,PDO::PARAM_INT);
-	$set_inv->bindParam('nb_ticket', $nb_ticket,PDO::PARAM_STR);
+	$set_inv->bindParam('tel', $tel_inv,PDO::PARAM_INT);
+	$set_inv->bindParam('nb_ticket', $nb_ticket_inv,PDO::PARAM_STR);
 	$set_inv->bindParam('conf', $conf,PDO::PARAM_STR);
 	$set_inv->bindParam('id',$id_inv,PDO::PARAM_STR);
 
