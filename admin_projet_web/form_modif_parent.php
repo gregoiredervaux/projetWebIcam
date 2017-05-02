@@ -3,10 +3,6 @@ require "class/Donnee.php";
 require "config.php";
 include("inclusion/header.php");
 
-if (!isset($_SESSION['modification']))
-{
-	header('./form_deja_pris.php');
-}
 var_dump($_SESSION);
 ?>
 

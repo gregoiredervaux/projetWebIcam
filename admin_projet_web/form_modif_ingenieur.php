@@ -1,26 +1,16 @@
 <?php
 require "class/Donnee.php";
 require "config.php";
+include("inclusion/header.php");
+
+var_dump($_SESSION);
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<?php include("inclusion/header.php"); 
-		if (!isset($_SESSION['modification']))
-			{
-				header('./form_deja_pris.php');
-				exit();
-			}
-			var_dump($_SESSION);
-			?>
-	</head>
-	
 	<body>
 		<form method="post" action="recap_avant_paiement_ingenieur.php">
-		<fieldset>
+		<fieldset id="valider">
 		<legend>Votre Place</legend>
 
 			<?php if (isset($_SESSION['erreur']))
@@ -156,7 +146,7 @@ require "config.php";
 		       <br>
 		       <br>
 		    </fieldset>
-		    <fieldset>
+		    <fieldset id="valider">
 		    <legend>Place de votre invité</legend>
 		    	<br>
 		       <div class="input-group" id="nom">
@@ -251,4 +241,5 @@ require "config.php";
 			<a href="recap_avant_paiement_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
 		</form>
 	</body>
+	<footer><br></footer>
 </html>

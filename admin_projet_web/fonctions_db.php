@@ -22,15 +22,17 @@ function findIcamGarant($id,$bd,$settings){  // return 0-> id invite 1-> id icam
 	$info=$promo->fetch();
 	if (!isset($info['promo'])){
 		$id_return=$bd->query('SELECT id_inge FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_invite='.$id);
+		$var=$id_return->fetch();
+		$id_sortie=$var[0];
 
-		return array($id, $id_return->fetch(),'inge');
+		return array($id, $id_sortie,'inge');
 	}
 
 	elseif ($info['promo']=='parent'){
 		$id_return=$bd->query('SELECT id_icam FROM '.$settings['confSQL']['bd_icam_has_guest'].' WHERE id_parent1='.$id.' OR id_parent2='.$id);
-		return array($id, $id_return->fetch(), 'icam');
+		return array($id, $id, 'icam');
 	}
-	else{
+	else{	
 	return array($id, $id, 'inge');
 	}
 }

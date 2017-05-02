@@ -18,21 +18,30 @@ catch(Exeption $e)
 if (isset($_GET['del_invite'])){
 	$garant=findIcamGarant($_GET['del_invite'], $bd, $settings);
 	if ($garant[0]==$garant[1]){	//cas ou on supprime un icam/inge , peut être réadapté a une utilisation avec étudiants icam dans la bdd (on a fait ici le cas très général)
-		$id_suppr=$bd->query('SELECT * FROM '.$settings['confSQL']['bd_'.$garant[2].'_has_guest'].' WHERE id_'.$garant[2].'='.$garant[1]);
-		$bd->query('DELETE FROM '.$settings['confSQL']['bd_'.$garant[2].'_has_guest'].' WHERE id_'.$garant[2].'='.$garant[1]);
-		foreach($id_suppr->fetch() as $id){
-			$bd->query('DELETE FROM '.$settings['confSQL']['bd_invite'].' WHERE id='.$id);
+		$id_invite=$bd->query('SELECT id_invite FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_inge='.$_GET['del_invite']);
+		$id_suppr=$id_invite->fetch();
+		if (!empty($id_suppr)){
+			$bd->query('DELETE FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_inge='.$_GET['del_invite']);
+			$bd->query('DELETE FROM '.$settings['confSQL']['bd_invite'].' WHERE id='.$id_suppr[0].' OR id='.$_GET['del_invite']);
 			?><div class="alert alert-danger" role="alert">
-    	<p>L'invité #<?php echo $_GET['del_invite'] ?> a bien été supprimé</p>
-  		</div>
-  		<?php
+	    	<p>Les invités <?php echo '#'.$_GET['del_invite'].' et #'.$id_suppr[0] ?> ont bien été supprimés</p>
+	  		</div>
+	  		<?php
+		}
+		else{
+			$bd->query('DELETE FROM '.$settings['confSQL']['bd_invite'].' WHERE id='.$_GET['del_invite']);
+			?><div class="alert alert-danger" role="alert">
+	    	<p>L'invité <?php echo '#'.$_GET['del_invite'] ?> a bien été supprimé</p>
+	  		</div>
+	  		<?php
+
 		}
 	}
 	elseif ($garant[2]=='inge'){	// cas invite d'un ingénieur
 		$bd->query('DELETE FROM '.$settings['confSQL']['bd_inge_has_guest'].' WHERE id_invite='.$garant[0]);
 		$bd->query('DELETE FROM '.$settings['confSQL']['bd_invite'].' WHERE id='.$garant[0]);
 		?><div class="alert alert-danger" role="alert">
-    	<p>L'invité #<?php echo $_GET['del_invite'] ?> a bien été supprimé</p>
+    	<p>L'invité <?php echo '#'.$_GET['del_invite'] ?> a bien été supprimé</p>
   		</div>
   		<?php
 		
@@ -60,7 +69,7 @@ if (isset($_GET['del_invite'])){
 		}
 		$bd->query('DELETE FROM '.$settings['confSQL']['bd_invite'].' WHERE id='.$_GET['del_invite']);
 		?><div class="alert alert-danger" role="alert">
-    	<p>L'invité <?php echo $_GET['del_invite'] ?> a bien été supprimé</p>
+    	<p>L'invité <?php echo '#'.$_GET['del_invite'] ?> a bien été supprimé</p>
   		</div>
   		<?php
 	}
@@ -76,7 +85,15 @@ else{								//cas d'une recherche
 <html>
 	<body>
 		<container>
-			<div class="row"><h3 class="col-md-offset-1 col-md-7"><strong>Liste des participants au Gala</strong></h3>
+			<div class="row">
+			<div class="col-md-offset-1 col-md-3">
+			<p><h3><strong>Liste des participants au Gala</strong></h3><p>Actuellement
+			<?php 
+			$nb=$bd->query('SELECT COUNT(*) FROM '.$settings['confSQL']['bd_invite']);
+			$compte=$nb->fetch();
+			echo($compte[0].' invités'); 
+			?></p>
+			</div>
 			</div>
 			<form action="liste_invite.php" method="post">
 			<section class="row" id="recherche">
@@ -99,6 +116,7 @@ else{								//cas d'une recherche
 					<div class="col-md-offset-1 col-md-10">
 						<table class="table table-striped">
 							<tr>
+								<td><strong>ID</strong></td>
 								<td><strong>Nom</strong></td>
 								<td><strong>Prénom</strong></td>
 								<td><strong>Email</strong></td>
@@ -116,6 +134,7 @@ else{								//cas d'une recherche
 							foreach ($liste_invite->fetchall() as $d){
 								?>
 								<tr>
+									<td><?php echo($d['id']) ?></td>
 									<td><?php echo($d['nom']) ?></td>
 									<td><?php echo($d['prenom']) ?></td>
 									<td><?php echo($d['email']) ?></td>
@@ -147,7 +166,12 @@ else{								//cas d'une recherche
 											?></td>
 									<td><?php echo($d['date_inscription']) ?></td>
 									<td>
-									<a href="gestion_db/verif_enreg_deja_pris.php?id=<?php echo($d['id'])?>" title="Editer l'utilisateur #<?php echo($d['id'])?>"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="gestion_db/verif_enreg_deja_pris.php?id=
+									<?php 
+									$id_modif=findIcamGarant($d['id'], $bd, $settings);
+									echo($id_modif[1]);
+									?>" 
+									title="Editer l'utilisateur #<?php echo($d['id'])?>"><i class="glyphicon glyphicon-edit"></i></a>
 							      	<a href="liste_invite.php?del_invite=<?php echo $d['id']; ?>" title="Supprimer l'utilisateur #<?php echo $d['id']; ?>" onclick="return confirm('Voulez-vous vraiment supprimer cet invité et ses invités ?');"><i class="glyphicon glyphicon-trash"></i></a>              
 
 				      				</td>
