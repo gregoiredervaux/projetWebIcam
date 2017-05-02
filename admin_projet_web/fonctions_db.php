@@ -8,7 +8,7 @@ function login($d,$bd,$settings){
  	$recup_admin=$bd->query('SELECT email, password FROM '.$settings['confSQL']['bd_admin']);
  	
  	while($donnee = $recup_admin->fetch()){
- 		if (($donnee['email']==$d['email_admin']) && ($donnee['password']==$d['password'])){
+ 		if (($donnee['email']==$d['email_admin']) && password_verify($d['password'],$donnee['password'])){
  			return True;
  		}
  	}

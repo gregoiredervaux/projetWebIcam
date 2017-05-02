@@ -62,7 +62,7 @@ include ('/config.php');
 				{ 
 					if($_SESSION['statut']!='empty')
 					{ ?>
-					<p><strong>Noms de l'invité:</strong>
+					<p><strong>Nom de l'invité:</strong>
 				<?php echo($_SESSION['nom_inv']->get_value());?></p>
 				
 				<p><strong>Prenom de l'invité:</strong>

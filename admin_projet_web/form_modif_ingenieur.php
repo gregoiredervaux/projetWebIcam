@@ -73,7 +73,7 @@ var_dump($_SESSION);
       				if($_SESSION['check_conference']->get_value()==null or $_SESSION['check_conference']->get_value()=='0')
       					{ ?>
 				      		<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+<?php echo($settings['tarifs']['conf']) ?>€</span></label>
 				      		</div>
 				      		<br>
 				      	<?php }
@@ -89,13 +89,22 @@ var_dump($_SESSION);
 						}
 				else
 				{ ?>
+<<<<<<< HEAD
 						<div class="checkbox">
 				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
 				      	</div>
 				      	<br>
 						<?php } ?>
+=======
+					<div class="checkbox">
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+<?php echo($settings['tarifs']['conf']) ?>€</span></label>
+				      		</div>
+				      		<br>
+				<?php } ?>
 
-      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
+>>>>>>> a9bfb200e82749aeb564e6e343f9a1efb89687e3
+
+      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+<?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
 
 		       		       <select name="nb_ticket" id="pays">
 
@@ -182,7 +191,7 @@ var_dump($_SESSION);
 			</div>
 			<br>
 		    
-		    <label for="nb_ticket_inv">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
+		    <label for="nb_ticket_inv">combien de tickets boissons voulez vous ? <span class="label label-primary">+<?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
 
 		       		       <select name="nb_ticket_inv" id="pays">
 
