@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <link href="bootstrap/css/main.css" rel="stylesheet">
+    <link rel="shortcut icon" href="media/logo.png">
     <nav class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">

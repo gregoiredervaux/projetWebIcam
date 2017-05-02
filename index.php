@@ -44,9 +44,9 @@ session_start();
 			    </div>
 
 			    <div class="item">
-			      <img src="media/rendlargent.jpg" alt="Argent" style="width:100%;">
+			      <img src="media/decors.jpg" alt="decors" style="width:100%;">
 			      <div class="carousel-caption">
-			        <h1>#REND L'ARGENT</h1>
+			        <h1>Des décors fait maison!</h1>
 			      </div>
 			    </div>
 			  </div>
@@ -107,7 +107,7 @@ session_start();
 
 			<section class="row" id="theme">
 				<div class="col-md-8"><h3>Au Crépuscule d'un règne</h3>
-					<div class="row"><p>Ceci est un thème bla bla bla explication GREGOIRE REND L'ARGENT #balec' de ton vélo moi je voulais une switch fheniopmre hiêhguersh hqu relocalhvu revhreyvgw vhnrebergh e gjhr eufhgjbjtrpbjt vdgdsy vjpbkkxndfjvb k,, ^shk jvidfhds dvofdvk hfucosdvh dkhs egfsefi rlvrev rijvr  gjv djvjdhegfhr kerofjru zeyf hre PENSER A CHANGER POLICE ECRITURE ET PEUT ETRE LA COULEUR</p></div>
+					<div class="row"><p>Le Gala Icam, c'est 1 thème, 13 salles, 13 ambiances, 2500 invités, et une promotion surmotivée qui vous propose de vivre une soirée inoubliable. Laissez-vous portez à travers les différentes civilisations perdues allant de la préhistoire aux vikings tout en passant par la civilisation égyptienne. Venez découvrir l'Icam telle que vous ne l'avez jamais vu!</p></div>
 				</div>
 				<div class="col-md-3"><img src="media/pyramide.jpg" alt="logo gala"></div>
 			</section>
@@ -115,7 +115,8 @@ session_start();
 			<section class="row" id="spread">
 				<div class="col-md-3"><img src="media/bg.jpg" alt="logo spread"></div>
 				<div class="col-md-8"><h3>Conférence Spread</h3>
-					<div class="row"><p>conférence spread qui n'a pas de putin de logo trouvable ni d'image qui rentre ici donc en attendant voici une photo de notre bien aimé BG, de plus bjiverh gbceusichrg gyfuirzecg ghfovcduygv regherivgd gfoergtfvyred vbo gfyvrd vgrey vregyrfgvhufdgv ghukfygsdrvdhvhd hdildfuh dihdfh kdfhg dfhkg dfh gh ufhredf rhhr fjzesgfzseh fkesgfsekjgvhrdh seh rgvrdyf kghi erh herggi rh dgrig rd hjg irdg dh</p></div>
+					<div class="row"><p> La conférence porte son regard vers l'horizon et vous propose 4 intervenants. 4 hommes et femmes, porteurs actifs d'un regard novateur et réunis autour de deux mots : OSER et DEMAIN. Les problématiques abordées seront celles de l'ingénieur et du citoyen dans un avenir proche. Entreprenariat social, biomimétisme, developpement durable et néo-leadership, venez partager une réflexion accessible à chacun et inspirante pour tous ! Possibilité d'échanger avec les intervenants lors du cocktail après la conférence.
+					Cette conférence vous sera présentée par Bernard-Gilles FLipo, ingénieur icam Lille (promo 86) et ancion directeur de l'Icam site de Lille.</p></div>
 				</div>
 			</section>
 			<br>
