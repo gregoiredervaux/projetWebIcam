@@ -68,30 +68,58 @@ var_dump($_SESSION);
 				}?> >
 			</div>
 			<br>
-			<?php if (!isset($_SESSION['check_diner']))
-      			{ ?>
-					<div class="checkbox">
-		      			<label><input type="checkbox" name="check_diner">Participation au diner <span class="label label-primary">+ <?php echo($settings['tarifs']['diner']) ?>€</span></label>
-		      		</div>
-		      	<br>
-		      	<?php } ?>
-      		<?php if (isset($_SESSION['check_conference']))
+			<?php if (isset($_SESSION['check_diner']))
       			{
-      				if($_SESSION['check_conference']->get_value()==null )
+      				if($_SESSION['check_diner']->get_value()==null or $_SESSION['check_diner']->get_value()=='0')
       					{ ?>
 				      		<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
+				      			<label><input type="checkbox" name="check_diner">Participation au diner <span class="label label-primary">+ 3€</span></label>
 				      		</div>
 				      		<br>
 				      	<?php }
+
+					elseif($_SESSION['check_diner']->get_value()=='on' or $_SESSION['check_diner']->get_value()=='1')
+      					{ ?>
+      					<div class="checkbox">
+				      			<label><input type="checkbox" name="check_diner" checked >Participation au diner <span class="label label-primary">+ 3€</span></label>
+				      	</div>
+				      	<br>
+
+						<?php }
 				}
 				else
 				{ ?>
-					<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
+						<div class="checkbox">
+				      			<label><input type="checkbox" name="check_diner">Participation au diner <span class="label label-primary">+ 3€</span></label>
+				      	</div>
+				      	<br>
+				<?php }
+      			if (isset($_SESSION['check_conference']))
+      			{
+      				if($_SESSION['check_conference']->get_value()==null or $_SESSION['check_conference']->get_value()=='0')
+      					{ ?>
+				      		<div class="checkbox">
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
 				      		</div>
 				      		<br>
-				<?php } ?>
+				      	<?php }
+
+					elseif($_SESSION['check_conference']->get_value()=='on' or $_SESSION['check_conference']->get_value()=='1')
+      					{ ?>
+      					<div class="checkbox">
+				      			<label><input type="checkbox" name="check_conference" checked >Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+				      	</div>
+				      	<br>
+
+						<?php }
+						}
+				else
+				{ ?>
+						<div class="checkbox">
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+				      	</div>
+				      	<br>
+						<?php } ?>
       		<br>
 
       		<div>

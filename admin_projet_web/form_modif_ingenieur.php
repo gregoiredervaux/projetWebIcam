@@ -70,22 +70,30 @@ var_dump($_SESSION);
 			<br>
       		<?php if (isset($_SESSION['check_conference']))
       			{
-      				if($_SESSION['check_conference']->get_value()==null )
+      				if($_SESSION['check_conference']->get_value()==null or $_SESSION['check_conference']->get_value()=='0')
       					{ ?>
 				      		<div class="checkbox">
 				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
 				      		</div>
 				      		<br>
 				      	<?php }
-				}
+
+					elseif($_SESSION['check_conference']->get_value()=='on' or $_SESSION['check_conference']->get_value()=='1')
+      					{ ?>
+      					<div class="checkbox">
+				      			<label><input type="checkbox" name="check_conference" checked >Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+				      	</div>
+				      	<br>
+
+						<?php }
+						}
 				else
 				{ ?>
-					<div class="checkbox">
+						<div class="checkbox">
 				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
-				      		</div>
-				      		<br>
-				<?php } ?>
-
+				      	</div>
+				      	<br>
+						<?php } ?>
 
       		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
 

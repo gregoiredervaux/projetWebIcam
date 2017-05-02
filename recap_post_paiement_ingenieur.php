@@ -75,23 +75,35 @@ elseif($_SESSION['paiement']==false)
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>
 				<br>
 
-				<?php if(isset($_SESSION['pas_inv']))
-				{ 
-					if($_SESSION['pas_inv']!=true)
+				<?php if(!isset($_SESSION['pas_inv']))
 					{?>
-					<p><strong>Noms de l'invité:</strong>
-				<?php echo($_SESSION['nom_inv']->get_value());?></p>
-				
-				<p><strong>Prenom de l'invité:</strong>
-				<?php echo($_SESSION['prenom_inv']->get_value());?></p>
+						<p><strong>Nom de l'invité:</strong>
+						<?php echo($_SESSION['nom_inv']->get_value());?></p>
+						
+						<p><strong>Prenom de l'invité:</strong>
+						<?php echo($_SESSION['prenom_inv']->get_value());?></p>
 
-				<p><strong>Telephone de l'invité:</strong>
-				<?php echo($_SESSION['tel_inv']->get_value());?></p>
+						<p><strong>Telephone de l'invité:</strong>
+						<?php echo($_SESSION['tel_inv']->get_value());?></p>
 
-				<p><strong>Nombre de tickets boisson de l'invité:</strong>
-				<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
-				<?php }
-				} ?>
+						<p><strong>Nombre de tickets boisson de l'invité:</strong>
+						<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
+					<?php
+				}
+					elseif($_SESSION['pas_inv']!=true)
+					{ ?>
+						<p><strong>Nom de l'invité:</strong>
+						<?php echo($_SESSION['nom_inv']->get_value());?></p>
+						
+						<p><strong>Prenom de l'invité:</strong>
+						<?php echo($_SESSION['prenom_inv']->get_value());?></p>
+
+						<p><strong>Telephone de l'invité:</strong>
+						<?php echo($_SESSION['tel_inv']->get_value());?></p>
+
+						<p><strong>Nombre de tickets boisson de l'invité:</strong>
+						<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
+					<?php } ?>
 				
 				<p><strong>Prix global:</strong>
 				<?php echo($_SESSION['prix']);?></p>

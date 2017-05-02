@@ -48,7 +48,7 @@ $verif->execute();
 $sortir=false;
 while ($info_recup = $verif->fetch())
 {
-	$psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT,array('salt' => $settings['security']['default_salt']));
+	// $psw_hash=password_hash($psw_salted,PASSWORD_DEFAULT,array('salt' => $settings['security']['default_salt']));
 	// echo("info_recup");
 	// var_dump($info_recup);
 	// echo("psw_hashé");

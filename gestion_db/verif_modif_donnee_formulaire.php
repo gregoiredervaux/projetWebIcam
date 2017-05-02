@@ -41,6 +41,13 @@ foreach ($_POST as $key => $value)
 			$dico_erreur=array($key=>$dico_donnee[$key]);	
 		}
 	}
+	if(preg_match('#^check#',$key))
+	{
+		if (($_SESSION[$key]->get_value()=='1' || $_SESSION[$key]->get_value()=='on') && (!isset($dico_donnee[$key])))
+		{
+			unset($_SESSION[$key]);
+		}
+	}
 }
 
 if (!empty($dico_erreur))

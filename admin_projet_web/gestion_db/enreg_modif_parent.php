@@ -20,6 +20,7 @@ if(isset($_SESSION['modification']))
 	//verification des données incluses par l'utilisateur
 	require "verif_modif_donnee_formulaire.php";
 }
+
 //initialisation des variables
 $id=$_SESSION['id']->get_value();
 $nom=$_SESSION['nom']->get_value();

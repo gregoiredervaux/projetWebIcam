@@ -75,7 +75,9 @@ $nb_ticket_inv=$_SESSION['nb_ticket_inv']->get_value();
 
 
 //on prepare une requette pour vérifier qu'il y a bien une place de libre !
-$nb_max=$settings['quotas']['ingenieurs'];
+$nb_max=$settings['quotas']['ingenieur'];
+echo("nb_max");
+var_dump($nb_max);
 $bd_invite=$settings['confSQL']['bd_invite'];
 
 $valid_nb_place=$bd->prepare ('SELECT count(*) FROM '.$bd_invite.' WHERE promo !=\'parent\'');
@@ -84,9 +86,11 @@ $valid_nb_place->execute();
 
 //on recupere les données en sortie de requette
 $rep_valide_nb_place=$valid_nb_place->fetch();
+var_dump($rep_valide_nb_place);
 
 if (intval($rep_valide_nb_place)>=$nb_max)
 {
+	die();
 	$_SESSION['erreur']['bool_nb_place_depasse']=new Donnee (true,'bool_nb_place_depasse');
 	header('Location: ../index.php');
 	exit();
