@@ -115,5 +115,4 @@ elseif($_SESSION['paiement']==false)
 </html>
 
 <?php 
-var_dump($_SESSION);
 $_SESSION=array(); ?>

@@ -3,7 +3,6 @@ require "class/Donnee.php";
 require "config.php";
 include("inclusion/header.php");
 
-var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

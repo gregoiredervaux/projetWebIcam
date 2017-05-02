@@ -6,8 +6,7 @@ include ('/config.php');
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include("inclusion/header.php"); 
-		var_dump($_SESSION) ?>
+		<?php include("inclusion/header.php");?>
 	</head>
 	
 	<body>

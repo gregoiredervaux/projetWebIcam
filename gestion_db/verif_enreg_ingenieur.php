@@ -86,7 +86,6 @@ $valid_nb_place->execute();
 
 //on recupere les données en sortie de requette
 $rep_valide_nb_place=$valid_nb_place->fetch();
-var_dump($rep_valide_nb_place);
 
 if (intval($rep_valide_nb_place)>=$nb_max)
 {

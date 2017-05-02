@@ -4,8 +4,6 @@ require "/class/Securise.php";
 include ('/config.php');
 session_start();
 
-var_dump($_SESSION);
-
 if(!isset($_SESSION['verif']))
 {
 	header("Location: mauvais_chemin.php");
