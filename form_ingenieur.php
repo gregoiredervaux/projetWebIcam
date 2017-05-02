@@ -33,7 +33,7 @@ else
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
-		<form method="post" action="gestion_db/verif_enreg_ingenieur.php">
+		<form method="post" action="gestion_db/verif_enreg_ingenieur.php" class="col-md-offset-1 col-md-5">
 			<fieldset>
 			<legend>Votre Place</legend>
 
@@ -121,7 +121,7 @@ else
       			.<?php if (isset($_SESSION['check_conference']))
       				{?>
       					checked
-      				<?php } ?> >Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+      				<?php } ?> >Participation à la conférence <span class="label label-primary">+ 3€/place</span></label>
       			</div>
       			<br>
 				<div>
@@ -272,6 +272,13 @@ else
 			<div class="btn-group" role="group" id="valider">
 				<a href="gestion_db/verif_enreg_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
 			</div>
+		<br/>
+		<br/>
+		<br/>
 		</form>
+
+		<footer>
+			<?php include("inclusion/pied_de_page.php"); ?>
+		</footer>
 	</body>
 </html>

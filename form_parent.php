@@ -31,8 +31,9 @@ else
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
+		<?php include("inclusion/prevention.php"); ?>
 		<form method="post" action="gestion_db/verif_enreg_parent.php">
-		<fieldset>
+		<fieldset  class="col-md-offset-1 col-md-5">
 		<legend>Votre Place</legend>
 
 			<?php if (isset($_SESSION['erreur']))
@@ -192,9 +193,18 @@ else
 		       </select>
 		    </div>
 		    <br>
-		</fieldset>
-		<div class="btn-group" role="group" id="valider">
-			<a href="gestion_db/verif_enreg_parent.php"><input type="submit" class="btn btn-default" value="valider"></a>
+		    <div class="btn-group" role="group" id="valider">
+				<a href="gestion_db/verif_enreg_parent.php"><input type="submit" class="btn btn-default" value="valider"></a>
+			</div>
 		</form>
+		<br/>
+		<br/>
+		<br/>
+		</fieldset>
+
+		<footer>
+
+			<?php include("inclusion/pied_de_page.php") ?>
+		</footer>
 	</body>
 </html>

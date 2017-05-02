@@ -19,7 +19,7 @@ if (!isset($_SESSION['modification']))
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
-		<form method="post" action="recap_avant_paiement_parent.php">
+		<form method="post" action="recap_avant_paiement_parent.php" class="col-md-offset-1 col-md-5">
 		<fieldset>
 		<legend>Votre Place</legend>
 
@@ -167,6 +167,12 @@ if (!isset($_SESSION['modification']))
 		</fieldset>
 		<div class="btn-group" role="group" id="valider">
 			<a href="recap_avant_paiement_parent.php"><input type="submit" class="btn btn-default" value="valider"></a>
+		<br/>
+		<br/>
+		<br/>
 		</form>
+		<footer>
+			<?php include("inclusion/pied_de_page.php"); ?>
+		</footer>
 	</body>
 </html>

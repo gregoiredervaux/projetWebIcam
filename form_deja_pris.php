@@ -30,7 +30,7 @@ else
 		<header>
 				<?php include("inclusion/entete.php"); ?>
 		</header>
-		<form method="post" action="gestion_db/verif_enreg_deja_pris.php">
+		<form method="post" action="gestion_db/verif_enreg_deja_pris.php" class="col-md-offset-1 col-md-5">
 		
 		<?php if (isset($_SESSION['erreur']['id_place']))
 					{ 
@@ -100,6 +100,12 @@ else
 		<div class="btn-group" role="group" id="valider">
 			<a href="gestion_db/verif_enreg_deja_pris.php"><input type="submit" class="btn btn-default" value="Rechercher"></a>
 		</div>
+		<br/>
+		<br/>
+		<br/>
 		</form>
+		<footer>
+			<?php include("inclusion/pied_de_page.php"); ?>
+		</footer>
 	</body>
 </html>
