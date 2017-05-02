@@ -33,24 +33,25 @@ if (!empty($dico_erreur))
 		if(!preg_match('#[inv]$#',$key))
 		{
 			$_SESSION['erreur'][$key]=$dico_erreur[$key];
-			echo("erreur_prise en compte");
 		}
 	}
 
 	if($_SESSION['nom_inv']->get_value()=='' && $_SESSION['prenom_inv']->get_value()=='')
 	{
-		$_SESSION['nom_inv']->set_verif(true);
-		$_SESSION['prenom_inv']->set_verif(true);
-		$_SESSION['nb_ticket_inv']->set_verif(true);
-		$_SESSION['tel_inv']->set_verif(true);
+		unset($dico_erreur['nom_inv']);
+		unset($dico_erreur['prenom_inv']);
+		unset($dico_erreur['nb_ticket_inv']);
+		unset($dico_erreur['tel_inv']);
 		$_SESSION['pas_inv']=true;
 	}
-	else
-	{
-		$_SESSION['erreur']=$dico_erreur;
-		header("Location: ../form_ingenieur");
-		exit();
-	}
+}
+if(!empty($dico_erreur))
+{
+	$_SESSION['erreur']=$dico_erreur;
+	// var_dump($_SESSION['erreur']);
+	// die();
+	header("Location: ../form_ingenieur");
+	exit();
 	// echo("session");
 	// var_dump($_SESSION['erreur']);
 	// die();
