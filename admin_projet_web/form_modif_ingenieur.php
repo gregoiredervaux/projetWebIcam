@@ -90,12 +90,15 @@ var_dump($_SESSION);
 				else
 				{ ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 						<div class="checkbox">
 				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
 				      	</div>
 				      	<br>
 						<?php } ?>
 =======
+=======
+>>>>>>> origin/master
 					<div class="checkbox">
 				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+<?php echo($settings['tarifs']['conf']) ?>€</span></label>
 				      		</div>

@@ -130,7 +130,6 @@ elseif($_SESSION['statut_inv']=='old')
 	$set_inv->execute();
 }
 $_SESSION['inv']=true;
-echo("yep");
 header("Location: ../recap_post_paiement_ingenieur");
 
 
