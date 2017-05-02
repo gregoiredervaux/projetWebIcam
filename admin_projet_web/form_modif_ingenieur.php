@@ -1,26 +1,24 @@
 <?php
 require "class/Donnee.php";
 require "config.php";
-session_start();
-
-if (!isset($_SESSION['modification']))
-{
-	header('./form_deja_pris.php');
-	exit();
-}
-var_dump($_SESSION);
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include("inclusion/head.php"); ?>
+		<?php include("inclusion/header.php"); 
+		if (!isset($_SESSION['modification']))
+			{
+				header('./form_deja_pris.php');
+				exit();
+			}
+			var_dump($_SESSION);
+			?>
 	</head>
 	
 	<body>
-		<header>
-				<?php include("inclusion/entete.php"); ?>
-		</header>
 		<form method="post" action="recap_avant_paiement_ingenieur.php">
 		<fieldset>
 		<legend>Votre Place</legend>

@@ -80,6 +80,7 @@ if (isset($rep_valid_nb_place['id_parent2']))
 {
 	$_SESSION['erreur']['bool_nb_place_depasse']=new Donnee (true,'bool_nb_place_depasse');
 	header('Location: ../form_parent');
+	exit();
 }
 else
 {

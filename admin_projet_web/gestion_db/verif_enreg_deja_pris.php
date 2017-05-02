@@ -74,6 +74,7 @@ $info_recup = $verif->fetch();
 			$_SESSION['statut']=new Donnee('ingenieur','statut');
 			$_SESSION['nom']=new Donnee($info_recup['nom'],'nom');
 			$_SESSION['prenom']=new Donnee($info_recup['prenom'],'prenom');
+			$_SESSION['email']=new Donnee($info_recup['email'],'email');
 			$_SESSION['tel']=new Donnee('0'.$info_recup['telephone'],'tel');
 			$_SESSION['nb_ticket']=new Donnee($info_recup['ticket_boisson'],'nb_ticket');
 			$_SESSION['check_conference']=new Donnee($info_recup['conference'],'check_conference');	

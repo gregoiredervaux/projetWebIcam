@@ -19,9 +19,6 @@ else
 {
 	header('./index.php');
 }
-
-echo("session au début du fromulaire");
-var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

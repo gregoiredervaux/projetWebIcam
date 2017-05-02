@@ -2,12 +2,6 @@
 require "class/Donnee.php";
 session_start();
 
-// if (isset($_SESSION['statut']))
-// {
-// 	echo("session debut d'index");
-// 	var_dump($_SESSION);
-// }
-
 ?>
 
 <!DOCTYPE html>

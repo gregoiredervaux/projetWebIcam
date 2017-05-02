@@ -63,7 +63,6 @@ if(isset($_SESSION['statut_inv']))
 	}
 }
 
-var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>

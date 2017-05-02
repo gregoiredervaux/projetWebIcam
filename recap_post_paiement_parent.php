@@ -14,7 +14,6 @@ elseif($_SESSION['paiement']==false)
 	header("Location: mauvais_chemin.php");
 }
 
-var_dump($_SESSION);
 
 ?>
 <!DOCTYPE html>

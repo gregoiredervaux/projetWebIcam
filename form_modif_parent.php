@@ -7,9 +7,6 @@ if (!isset($_SESSION['modification']))
 {
 	header('./form_deja_pris.php');
 }
-
-echo("session au début du fromulaire");
-var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

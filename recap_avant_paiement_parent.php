@@ -37,10 +37,6 @@ if(!isset($_SESSION['prix']))
 	}
 	$_SESSION['prix']=$prix;
 }
-		
-
-
-var_dump($_SESSION);
 
 ?>
 <html>
