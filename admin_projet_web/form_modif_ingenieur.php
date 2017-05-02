@@ -9,7 +9,7 @@ var_dump($_SESSION);
 <!DOCTYPE html>
 <html>
 	<body>
-		<form method="post" action="recap_avant_paiement_ingenieur.php">
+		<form method="post" action="gestion_db/enreg_modif_ingenieur.php">
 		<fieldset id="valider">
 		<legend>Votre Place</legend>
 
@@ -73,7 +73,7 @@ var_dump($_SESSION);
       				if($_SESSION['check_conference']->get_value()==null )
       					{ ?>
 				      		<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
 				      		</div>
 				      		<br>
 				      	<?php }
@@ -81,67 +81,64 @@ var_dump($_SESSION);
 				else
 				{ ?>
 					<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
 				      		</div>
 				      		<br>
 				<?php } ?>
 
 
-      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ <?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
+      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
 
-		       <select name="nb_ticket" id="pays">
-		       <?php
-		       if (!isset($_SESSION['nb_ticket']))
-		       { ?>
-		   			 <option value=0>0</option>
-		   			 <option value=10>10</option>
-		   			 <option value=20>20</option>
-		   			 <option value=30>30</option>
-		   			 <option value=40>40</option>
-		   			 <option value=50>50</option>
-		       <?php }
-		       else
-		       {
-		       		if ($_SESSION['nb_ticket']->get_value()=='0')
-		       		{ ?>
-			       		<option value=0>0</option>
-			   			<option value=10>10</option>
-			   			<option value=20>20</option>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket']->get_value()=='10')
-		       		{ ?>
-			       		<option value=10>10</option>
-			   			<option value=20>20</option>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket']->get_value()=='20')
-		       		{ ?>
-			       		<option value=20>20</option>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket']->get_value()=='30')
-		       		{ ?>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket']->get_value()=='40')
-		       		{ ?>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		else
-		       		{ ?>
-			   			<option value=50>50</option>
-		       		<?php }
-		       } ?>
+		       		       <select name="nb_ticket" id="pays">
+
+		           <option value=0 <?php if (isset($_SESSION['nb_ticket']))
+      										{
+      											if ($_SESSION['nb_ticket']->get_value()=='0')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >0</option>
+
+		           <option value=10 <?php if (isset($_SESSION['nb_ticket']))
+      										{
+      											if ($_SESSION['nb_ticket']->get_value()=='10')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >10</option>
+
+		           <option value=20 <?php if (isset($_SESSION['nb_ticket']))
+      										{
+      											if ($_SESSION['nb_ticket']->get_value()=='20')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >20</option>
+
+		           <option value=30 <?php if (isset($_SESSION['nb_ticket']))
+      										{
+      											if ($_SESSION['nb_ticket']->get_value()=='30')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >30</option>
+
+		           <option value=40 <?php if (isset($_SESSION['nb_ticket']))
+      										{
+      											if ($_SESSION['nb_ticket']->get_value()=='40')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >40</option>
+
+		           <option value=50 <?php if (isset($_SESSION['nb_ticket']))
+      										{
+      											if ($_SESSION['nb_ticket']->get_value()=='50')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >50</option>
+
 		       </select>
 		       <br>
 		       <br>
@@ -177,68 +174,66 @@ var_dump($_SESSION);
 			</div>
 			<br>
 		    
-		    <label for="nb_ticket_inv">combien de tickets boissons voulez vous ? <span class="label label-primary">+ <?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
+		    <label for="nb_ticket_inv">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
 
-		       <select name="nb_ticket_inv" id="pays">
-		       <?php
-		       if (!isset($_SESSION['nb_ticket_inv']))
-		       { ?>
-		   			 <option value=0>0</option>
-		   			 <option value=10>10</option>
-		   			 <option value=20>20</option>
-		   			 <option value=30>30</option>
-		   			 <option value=40>40</option>
-		   			 <option value=50>50</option>
-		       <?php }
-		       else
-		       {
-		       		if ($_SESSION['nb_ticket_inv']->get_value()=='0')
-		       		{ ?>
-			       		<option value=0>0</option>
-			   			<option value=10>10</option>
-			   			<option value=20>20</option>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket_inv']->get_value()=='10')
-		       		{ ?>
-			       		<option value=10>10</option>
-			   			<option value=20>20</option>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket_inv']->get_value()=='20')
-		       		{ ?>
-			       		<option value=20>20</option>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket_inv']->get_value()=='30')
-		       		{ ?>
-			   			<option value=30>30</option>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		elseif ($_SESSION['nb_ticket_inv']->get_value()=='40')
-		       		{ ?>
-			   			<option value=40>40</option>
-			   			<option value=50>50</option>
-		       		<?php }
-		       		else
-		       		{ ?>
-			   			<option value=50>50</option>
-		       		<?php }
-		       } ?>
+		       		       <select name="nb_ticket_inv" id="pays">
+
+		           <option value=0 <?php if (isset($_SESSION['nb_ticket_inv']))
+      										{
+      											if ($_SESSION['nb_ticket_inv']->get_value()=='0')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >0</option>
+
+		           <option value=10 <?php if (isset($_SESSION['nb_ticket_inv']))
+      										{
+      											if ($_SESSION['nb_ticket_inv']->get_value()=='10')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >10</option>
+
+
+		           <option value=20 <?php if (isset($_SESSION['nb_ticket_inv']))
+      										{
+      											if ($_SESSION['nb_ticket_inv']->get_value()=='20')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >20</option>
+
+		           <option value=30 <?php if (isset($_SESSION['nb_ticket_inv']))
+      										{
+      											if ($_SESSION['nb_ticket_inv']->get_value()=='30')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >30</option>
+
+		           <option value=40 <?php if (isset($_SESSION['nb_ticket_inv']))
+      										{
+      											if ($_SESSION['nb_ticket_inv']->get_value()=='40')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >40</option>
+
+		           <option value=50 <?php if (isset($_SESSION['nb_ticket_inv']))
+      										{
+      											if ($_SESSION['nb_ticket_inv']->get_value()=='50')
+      												{?>
+      													selected
+      												<?php }
+      										}?> >50</option>
+
 		       </select>
 
 		    <br>
 		    <br>
 		</fieldset>
 		<div class="btn-group" role="group" id="valider">
-			<a href="recap_avant_paiement_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
+			<a href=gestion_db/enreg_modif_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
 		</form>
 	</body>
 	<footer><br></footer>
