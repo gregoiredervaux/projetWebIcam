@@ -117,11 +117,11 @@ if (isset($_SESSION))
       			.<?php if (isset($_SESSION['check_conference']))
       				{?>
       					checked
-      				<?php } ?> >Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+      				<?php } ?> >Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
       			</div>
       			<br>
 				<div>
-      			<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
+      			<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ <?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
 		       <select name="nb_ticket" id="pays">
 
 		           <option value=0 <?php if (isset($_SESSION['nb_ticket']))
@@ -208,7 +208,7 @@ if (isset($_SESSION))
 				</div>
 				<br>
 				<div>
-      		<label for="nb_ticket">combien de tickets boissons voulez vous pour votre invité(e) ? <span class="label label-primary">+ 1€/ticket</span></label><br />
+      		<label for="nb_ticket">combien de tickets boissons voulez vous pour votre invité(e) ? <span class="label label-primary">+ <?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
 
 		       <select name="nb_ticket_inv" id="pays">
 

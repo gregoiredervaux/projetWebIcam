@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 $settings=array(
 		'emailContactGala'=>'guillaume.dubois-malafosse@2019.icam.fr',
 		'confSQL'=>array(
@@ -28,5 +30,25 @@ $settings=array(
             'prefix_salt' => 'galaicam',
             'suffix_salt' => 'promotion119',
             'default_salt' => 'mvpp6q7p7lamb3zw7915mp')
-        )
+        );
+try
+    {
+      $bd = new PDO('mysql:host='.$settings['confSQL']['sql_host'].';dbname='.$settings['confSQL']['sql_db'].';charset=utf8',$settings['confSQL']['sql_user'],$settings['confSQL']['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+    }
+    catch(Exeption $e)
+    {
+      die('erreur:'.$e->getMessage());
+    } 
+$parametre=$bd->prepare('SELECT prix_soiree, prix_diner, prix_conference, prix_ticket_boisson, quota_parent, quota_ingenieur FROM '.$settings['confSQL']['bd_parametre']);
+$parametre->execute();
+$valeurs=$parametre->fetch();
+$settings['quotas']=array('parents'=>$valeurs['quota_parent'], 
+                          'ingenieur'=>$valeurs['quota_ingenieur']);
+$settings['tarifs']=array(
+                          'place' => $valeurs['prix_soiree'],
+                          'diner' => $valeurs['prix_diner'],
+                          'conf' => $valeurs['prix_conference'],
+                          'ticket_boisson' => $valeurs['prix_ticket_boisson']);
+
+
 ?>

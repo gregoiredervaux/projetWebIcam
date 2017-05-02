@@ -71,7 +71,7 @@ var_dump($_SESSION);
 			<?php if (!isset($_SESSION['check_diner']))
       			{ ?>
 					<div class="checkbox">
-		      			<label><input type="checkbox" name="check_diner">Participation au diner <span class="label label-primary">+ 10€</span></label>
+		      			<label><input type="checkbox" name="check_diner">Participation au diner <span class="label label-primary">+ <?php echo($settings['tarifs']['diner']) ?>€</span></label>
 		      		</div>
 		      	<br>
 		      	<?php } ?>
@@ -80,7 +80,7 @@ var_dump($_SESSION);
       				if($_SESSION['check_conference']->get_value()==null )
       					{ ?>
 				      		<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
 				      		</div>
 				      		<br>
 				      	<?php }
@@ -88,14 +88,14 @@ var_dump($_SESSION);
 				else
 				{ ?>
 					<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
+				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ <?php echo($settings['tarifs']['conf']) ?>€</span></label>
 				      		</div>
 				      		<br>
 				<?php } ?>
       		<br>
 
       		<div>
-      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ 1€/ticket</span></label><br />
+      		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+ <?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
 
 		       <select name="nb_ticket" id="pays">
 
