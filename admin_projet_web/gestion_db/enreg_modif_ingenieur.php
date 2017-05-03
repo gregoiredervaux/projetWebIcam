@@ -131,5 +131,6 @@ elseif($_SESSION['statut_inv']=='old')
 }
 $_SESSION['inv']=true;
 header("Location: ../recap_post_paiement_ingenieur");
+exit();
 
 

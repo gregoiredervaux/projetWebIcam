@@ -250,12 +250,11 @@ if (!isset($_SESSION['modification']))
 		</fieldset>
 		<div class="btn-group" role="group" id="valider">
 			<a href="recap_avant_paiement_ingenieur.php"><input type="submit" class="btn btn-default" value="valider"></a>
+		</div>
 		<br/>
 		<br/>
 		<br/>
 		</form>
-		<footer>
-			<?php include("inclusion/pied_de_page.php"); ?>
-		</footer>
 	</body>
 </html>
+	<?php include("inclusion/pied_de_page.php"); ?>

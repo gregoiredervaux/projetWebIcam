@@ -102,8 +102,10 @@ else
 
 	//on a toutes les infos pour mettre a jour le lien
 
-	$set_lien=$bd->prepare('UPDATE '.$settings['confSQL']['bd_icam_has_guest'].' SET id_parent2= :id_parent2');
+	$set_lien=$bd->prepare('UPDATE '.$settings['confSQL']['bd_icam_has_guest'].' SET id_parent2= :id_parent2 WHERE id_icam= :id');
+
 	$set_lien->bindParam('id_parent2', $id_parent, PDO::PARAM_INT);
+	$set_lien->bindParam('id', $id, PDO::PARAM_INT);
 
 	$set_lien->execute();
 }
@@ -111,4 +113,5 @@ $_SESSION['enregistrement']="fait";
 $_SESSION['id']=$id_parent;
 $_SESSION['psw']=$psw;
 header("Location: ../recap_post_paiement_parent");
+exit();
 ?>

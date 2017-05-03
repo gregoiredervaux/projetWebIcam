@@ -19,6 +19,7 @@ if (isset($_POST['statut']) && $_POST['statut']=='ingenieur')
 else
 {
 	header('./index.php');
+	exit();
 }
 
 ?>

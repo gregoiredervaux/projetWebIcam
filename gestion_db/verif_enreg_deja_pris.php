@@ -118,3 +118,4 @@ if($sortir==false)
 	exit();
 }
 header('Location: ../form_modif_'.($_SESSION['statut']->get_value()));
+exit();

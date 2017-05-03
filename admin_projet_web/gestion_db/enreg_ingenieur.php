@@ -102,4 +102,5 @@ $_SESSION['enregistrement']="fait";
 $_SESSION['id']=$id_inge;
 $_SESSION['psw']=$psw;
 header("Location: ../recap_post_paiement_ingenieur");
+exit();
 ?>

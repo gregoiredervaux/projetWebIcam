@@ -154,4 +154,5 @@ if(isset($_SESSION['nb_ticket_inv']))
 }
 $_SESSION['verif']=true;
  header("Location: ../recap_avant_paiement_ingenieur.php");
+ exit();
 ?>

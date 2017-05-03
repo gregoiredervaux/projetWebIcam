@@ -39,11 +39,13 @@ if (isset($_POST['email_admin']) && isset($_POST['password']))
     $_SESSION=array(
       'erreur'=>'identifiants incorrects');
     header('Location: connexion.php');
+    exit();
   }
   else{
     $_SESSION=array(
       'email_admin'=>$_POST['email_admin']);
       header('Location: liste_invite.php');
+      exit();
   }
 }
  ?>

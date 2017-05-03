@@ -76,7 +76,7 @@ $nb_ticket_inv=$_SESSION['nb_ticket_inv']->get_value();
 
 
 //on prepare une requette pour vérifier qu'il y a bien une place de libre !
-$nb_max=$settings['quotas']['ingenieurs'];
+$nb_max=$settings['quotas']['ingenieur'];
 $bd_invite=$settings['confSQL']['bd_invite'];
 
 $valid_nb_place=$bd->prepare ('SELECT count(*) FROM '.$bd_invite.' WHERE promo !=\'parent\'');
@@ -135,4 +135,5 @@ if(isset($_SESSION['pas_inv']))
 
 $_SESSION['verif']=true;
  header("Location: enreg_ingenieur.php");
+ exit();
 ?>

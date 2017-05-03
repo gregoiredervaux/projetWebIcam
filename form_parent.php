@@ -18,6 +18,7 @@ if (isset($_POST['statut']) && $_POST['statut']=='parent' )
 else
 {
 	header('./index.php');
+	exit();
 }
 ?>
 

@@ -58,5 +58,6 @@ $update->bindParam('id', $id, PDO::PARAM_INT);
 $update->execute();
 
 header("Location: ../recap_post_paiement_parent");
+exit();
 
 

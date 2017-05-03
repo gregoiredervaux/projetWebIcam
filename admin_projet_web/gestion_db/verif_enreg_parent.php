@@ -55,6 +55,7 @@ if ($rep_valid_email['COUNT(*)']=='0')
 {
 	$_SESSION['erreur']['bool_email_invalide']=new Donnee (true,'bool_email_invalide');
 	header('Location: ../form_parent');
+	exit();
 }
 else
 {
@@ -80,6 +81,7 @@ if (isset($rep_valid_nb_place['id_parent2']))
 {
 	$_SESSION['erreur']['bool_nb_place_depasse']=new Donnee (true,'bool_nb_place_depasse');
 	header('Location: ../form_parent');
+	exit();
 }
 else
 {
@@ -111,6 +113,7 @@ if($rep_verif_info_double['count(*)']!='0')
 {
 	$_SESSION['erreur']['bool_doublons']=new Donnee (true,'bool_doublons');
 	header('Location: ../form_'.($_SESSION['statut']->get_value()));
+	exit();
 }
 else
 {
@@ -118,4 +121,5 @@ else
 }
 $_SESSION['verif']=true;
  header("Location: enreg_parent.php");
+ exit();
 ?>

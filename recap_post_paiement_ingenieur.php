@@ -7,10 +7,12 @@ session_start();
 if(!isset($_SESSION['paiement']))
 {
 	header("Location: mauvais_chemin.php");
+	exit();
 }
 elseif($_SESSION['paiement']==false)
 {
 	header("Location: mauvais_chemin.php");
+	exit();
 }
 
 ?>

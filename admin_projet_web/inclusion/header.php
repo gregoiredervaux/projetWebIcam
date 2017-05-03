@@ -17,6 +17,7 @@
     if (!isset($_SESSION['email_admin'])){  //verifie autorisation
       $_SESSION=array('erreur'=>'Vous devez vous connecter pour accéder à cette page!');
       header('Location: connexion.php');
+      exit();
     }
       require "config.php";
       try

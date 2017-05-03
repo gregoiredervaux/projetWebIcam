@@ -6,6 +6,7 @@ session_start();
 if (!isset($_SESSION['modification']))
 {
 	header('./form_deja_pris.php');
+	exit();
 }
 ?>
 

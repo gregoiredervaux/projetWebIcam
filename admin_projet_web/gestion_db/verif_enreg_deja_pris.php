@@ -84,3 +84,4 @@ $info_recup = $verif->fetch();
 		$_SESSION['modification']=true;
 
 header('Location: ../form_modif_'.($_SESSION['statut']->get_value()));
+exit();

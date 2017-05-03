@@ -57,6 +57,7 @@ if ($rep_valid_email['COUNT(*)']=='0')
 {
 	$_SESSION['erreur']['bool_email_invalide']=new Donnee (true,'bool_email_invalide');
 	header('Location: ../form_'.($_SESSION['statut']->get_value()));
+	exit();
 }
 else
 {
@@ -82,6 +83,7 @@ if (isset($rep_valid_nb_place['id_parent2']))
 {
 	$_SESSION['erreur']['bool_nb_place_depasse']=new Donnee (true,'bool_nb_place_depasse');
 	header('Location: ../form_'.($_SESSION['statut']->get_value()));
+	exit();
 }
 else
 {
@@ -140,4 +142,5 @@ if(isset($_SESSION['nb_ticket']))
 }
 $_SESSION['verif']=true;
  header("Location: ../recap_avant_paiement_parent.php");
+ exit();
 ?>

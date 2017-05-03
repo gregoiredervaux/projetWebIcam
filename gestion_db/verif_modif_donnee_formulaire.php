@@ -53,6 +53,7 @@ foreach ($_POST as $key => $value)
 if (!empty($dico_erreur))
 {
 	$_SESSION['erreur']=$dico_erreur;
-	header('Location: ../form_modif_'.($_SESSION['statut']->get_value()));;
+	header('Location: form_modif_'.($_SESSION['statut']->get_value()));
+	exit();
 }
 ?>

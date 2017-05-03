@@ -17,5 +17,6 @@ if(isset($_SESSION['modification']))
 else
 {
 	header('Location: gestion_db/enreg_'.$_SESSION['statut']->get_value().'.php');
+	exit();
 }
 ?>

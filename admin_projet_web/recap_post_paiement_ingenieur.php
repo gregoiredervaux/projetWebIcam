@@ -6,7 +6,9 @@ include ('/config.php');
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include("inclusion/header.php");?>
+		<?php include("inclusion/header.php");
+
+?>
 	</head>
 	
 	<body>

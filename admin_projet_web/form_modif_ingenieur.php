@@ -87,23 +87,11 @@ include("inclusion/header.php");
 						}
 				else
 				{ ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-						<div class="checkbox">
-				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+ 3€</span></label>
-				      	</div>
-				      	<br>
-						<?php } ?>
-=======
-=======
->>>>>>> origin/master
 					<div class="checkbox">
 				      			<label><input type="checkbox" name="check_conference">Participation à la conférence <span class="label label-primary">+<?php echo($settings['tarifs']['conf']) ?>€</span></label>
 				      		</div>
 				      		<br>
 				<?php } ?>
-
->>>>>>> a9bfb200e82749aeb564e6e343f9a1efb89687e3
 
       		<label for="nb_ticket">combien de tickets boissons voulez vous ? <span class="label label-primary">+<?php echo($settings['tarifs']['ticket_boisson']) ?>€/ticket</span></label><br />
 

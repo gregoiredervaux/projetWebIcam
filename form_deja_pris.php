@@ -17,6 +17,7 @@ if (isset($_POST['statut']) && $_POST['statut']=='deja_pris')
 else
 {
 	header('./index.php');
+	exit();
 }
 ?>
 

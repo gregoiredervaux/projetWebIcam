@@ -7,10 +7,12 @@ session_start();
 if(!isset($_SESSION['verif']))
 {
 	header("Location: mauvais_chemin.php");
+	exit();
 }
 elseif($_SESSION['verif']==false)
 {
 	header("Location: mauvais_chemin.php");
+	exit();
 }
 
 if(isset($_SESSION['modification']))

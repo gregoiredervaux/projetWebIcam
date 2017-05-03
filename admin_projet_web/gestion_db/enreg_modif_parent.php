@@ -66,5 +66,6 @@ $update->bindParam('id', $id, PDO::PARAM_INT);
 $update->execute();
 
 header("Location: ../liste_invite");
+exit();
 
-
+?>
