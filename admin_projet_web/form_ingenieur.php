@@ -3,22 +3,17 @@ require "class/Donnee.php";
 require "config.php";
 include("inclusion/header.php");
 unset($_SESSION['modification']);
-if (isset($_POST['statut']) && $_POST['statut']=='ingenieur')
+
+if (!isset($_SESSION['statut']))
 {
-	if (isset($_SESSION['statut']))
-	{
-		if ($_SESSION['statut']->get_value()!=$_POST['statut'])
-		{
-			//si la session est autre que ce que dit le POST, c'est qu'il à déjà visiter un autre formulaire, donc on reinitilaise la session
-			$_SESSION=array();
-		}
-	}
+	$_SESSION=array('email_admin' => $_SESSION['email_admin']);
 	$_SESSION['statut']=new Donnee ('ingenieur','statut');
 }
-else
+elseif ($_SESSION['statut']->get_value()!='ingenieur')
 {
-	header('./index.php');
-	exit();
+	//si la session est autre que ce que dit le POST, c'est qu'il a déjà visité un autre formulaire, donc on reinitialise la session
+	$_SESSION=array('email_admin' => $_SESSION['email_admin']);
+	$_SESSION['statut']=new Donnee ('ingenieur','statut');
 }
 
 ?>

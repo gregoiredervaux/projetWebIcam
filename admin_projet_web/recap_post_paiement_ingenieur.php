@@ -59,9 +59,7 @@ include ('/config.php');
 				<?php echo($_SESSION['nb_ticket']->get_value());?></p>
 				<br>
 
-				<?php if(!isset($_SESSION['pas_inv']))
-				{ 
-					if($_SESSION['statut']!='empty')
+				<?php if($_SESSION['statut']!='empty')
 					{ ?>
 					<p><strong>Nom de l'invité:</strong>
 				<?php echo($_SESSION['nom_inv']->get_value());?></p>
@@ -74,8 +72,7 @@ include ('/config.php');
 
 				<p><strong>Nombre de tickets boisson de l'invité:</strong>
 				<?php echo($_SESSION['nb_ticket_inv']->get_value());?></p>
-				<?php }
-				} ?>
+				<?php } ?>
 			
 				<br>
 

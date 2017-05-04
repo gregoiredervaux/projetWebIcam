@@ -19,8 +19,8 @@ catch(Exeption $e)
 include "verif_donnee_formulaire.php";
 unset($_SESSION['erreur']);
 $_SESSION['pas_inv']=false;
-// echo("session initiale");
-// var_dump($_SESSION);
+
+
 if (!empty($dico_erreur))
 {
 	// echo("dico");

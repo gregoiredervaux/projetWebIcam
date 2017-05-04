@@ -22,14 +22,10 @@ if(isset($_SESSION['statut_inv']))
 	}
 }
 
-// echo("session av");
-// var_dump($_SESSION);
+
 
 require "./verif_modif_donnee_formulaire.php";
 
-// echo("session av");
-// var_dump($_SESSION);
-// die();
 
 //initialisation des variables
 $id=$_SESSION['id']->get_value();

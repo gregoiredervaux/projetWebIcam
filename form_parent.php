@@ -3,23 +3,18 @@ require "class/Donnee.php";
 require "config.php";
 session_start();
 
-if (isset($_POST['statut']) && $_POST['statut']=='parent' )
+if (!isset($_SESSION['statut']))
 {
-	if (isset($_SESSION['statut']))
-	{
-		if ($_SESSION['statut']->get_value()!=$_POST['statut'])
-		{
-			//si la session est autre que ce que dit le POST, c'est qu'il à déjà visiter un autre formulaire, donc on reinitilaise la session
-			$_SESSION=array();
-		}
-	}
+	$_SESSION=array();
 	$_SESSION['statut']=new Donnee ('parent','statut');
 }
-else
+elseif ($_SESSION['statut']->get_value()!='parent')
 {
-	header('./index.php');
-	exit();
+	//si la session est autre que ce que dit le POST, c'est qu'il a déjà visité un autre formulaire, donc on reinitialise la session
+	$_SESSION=array();
+	$_SESSION['statut']=new Donnee ('parent','statut');
 }
+
 ?>
 
 <!DOCTYPE html>
