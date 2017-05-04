@@ -15,6 +15,17 @@ elseif($_SESSION['verif']==false)
 	exit();
 }
 
+if(isset($_SESSION['statut_inv']))
+{
+	if($_SESSION['statut_inv']=='empty' && isset($_SESSION['nom_inv']))
+	{
+		if($_SESSION['nom_inv']->get_value()!='')
+			{
+				$_SESSION['statut_inv']='new';
+			}
+	}
+}
+
 if(isset($_SESSION['modification']))
 {
 	//verification des données incluses par l'utilisateur
@@ -54,13 +65,6 @@ if(!isset($_SESSION['prix']))
 		}
 	}
 	$_SESSION['prix']=$prix;
-}
-if(isset($_SESSION['statut_inv']))
-{
-	if($_SESSION['statut_inv']=='empty' && isset($_SESSION['nom_inv']))
-	{
-		$_SESSION['statut_inv']='new';
-	}
 }
 
 ?>

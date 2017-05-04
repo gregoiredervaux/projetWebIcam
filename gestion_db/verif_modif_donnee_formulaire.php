@@ -48,6 +48,15 @@ foreach ($_POST as $key => $value)
 			unset($_SESSION[$key]);
 		}
 	}
+	
+	if($_SESSION['nom_inv']->get_value()=='' && $_SESSION['prenom_inv']->get_value()=='' && $_SESSION['statut_inv']=='empty')
+	{
+		unset($dico_erreur['nom_inv']);
+		unset($dico_erreur['prenom_inv']);
+		unset($dico_erreur['nb_ticket_inv']);
+		unset($dico_erreur['tel_inv']);
+		$_SESSION['pas_inv']=true;
+	}
 }
 
 if (!empty($dico_erreur))

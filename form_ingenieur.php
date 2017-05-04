@@ -2,7 +2,7 @@
 require "class/Donnee.php";
 require "config.php";
 session_start();
-
+var_dump($_SESSION);
 unset($_SESSION['modification']);
 if (isset($_POST['statut']) && $_POST['statut']=='ingenieur')
 {
